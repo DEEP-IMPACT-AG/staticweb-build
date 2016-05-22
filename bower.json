@@ -1,0 +1,26 @@
+{
+  "name": "Riangle",
+  "description": "",
+  "main": "gulpfile.js",
+  "authors": [
+    "Luan Gjokaj"
+  ],
+  "license": "ISC",
+  "homepage": "http://www.riangle.com",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^2.2.3",
+    "nprogress": "^0.2.0",
+    "wow": "^1.1.2",
+    "skrollr": "^0.6.30",
+    "isotope": "^3.0.0",
+    "particles.js": "^2.0.0"
+  }
+}
