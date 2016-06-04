@@ -7,13 +7,13 @@
 npm install -g bower
 ```
 * Clone Repository: https://github.com/luangjokaj/blank-web-template
-* Run the following command:
+* Install node packages and bower components:
 ```
 npm install && bower install
 ```
 
 ## Run the Build
-To start watching and livereload:
+To start watching and live-reload:
 ```
 gulp run
 ```
