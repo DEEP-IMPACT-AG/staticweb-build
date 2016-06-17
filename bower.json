@@ -21,6 +21,7 @@
     "wow": "^1.1.2",
     "skrollr": "^0.6.30",
     "isotope": "^3.0.0",
-    "particles.js": "^2.0.0"
+    "particles.js": "^2.0.0",
+    "normalize-css": "normalize.css#^4.1.1"
   }
 }
