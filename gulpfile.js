@@ -14,7 +14,9 @@ var cleanCSS = require('gulp-clean-css');
 var uglify = require('gulp-uglify');
 var imageop = require('gulp-image-optimization');
 
-gulp.task('build', ['sass', 'uglify', 'copyimages', 'images', 'fonts', 'bower', 'php']);
+gulp.task('build', ['sass', 'uglify', 'copyimages', 'fonts', 'bower', 'php']);
+
+gulp.task('images', ['copyimages', 'images']);
 
 gulp.task('run', ['build', 'connect-sync', 'watch']);
 
@@ -93,7 +95,7 @@ gulp.task('copyimages', function(){
 });
 
 gulp.task('images', function(cb){
-    gulp.src(['app/assets/img/**']).pipe(imageop({
+    gulp.src(['src/assets/img/**']).pipe(imageop({
         optimizationLevel: 5,
         progressive: true,
         interlaced: true
@@ -105,7 +107,6 @@ gulp.task('watch', function(){
     gulp.watch(['src/scss/*.scss'], ['sass']);
     gulp.watch(['src/assets/js/**'], ['uglify']);
     gulp.watch(['src/assets/img/**'], ['copyimages']);
-    gulp.watch(['src/assets/img/**'], ['images']);
     gulp.watch(['src/assets/fonts/**'], ['fonts']);
     gulp.watch(['bower_components/**'], ['bower']);
     gulp.watch(['src/.htaccess'], ['php']);

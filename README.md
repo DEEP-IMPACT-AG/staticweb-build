@@ -21,3 +21,9 @@ To build distribution files:
 ```
 gulp build
 ```
+
+## Image Optimization
+For optimizing distribution images run the following command:
+```
+gulp images
+```
