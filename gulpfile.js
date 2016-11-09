@@ -1,20 +1,27 @@
+
 /* ---------------------------------------------------------------------------------------------------------------------
 
-MAIN GULP CONFIGURATION
+Build Configuration
 Contributors: Luan Gjokaj
 
 --------------------------------------------------------------------------------------------------------------------- */
 var gulp = require('gulp');
 var gutil = require('gulp-util');
 var ftp = require('vinyl-ftp');
-var sass = require('gulp-sass');
 var connect = require('gulp-connect-php');
 var browserSync = require('browser-sync');
-var cleanCSS = require('gulp-clean-css');
 var uglify = require('gulp-uglify');
 var imageop = require('gulp-image-optimization');
+var postcss = require('gulp-postcss');
+var sourcemaps = require('gulp-sourcemaps');
+var csswring = require('csswring');
+var autoprefixer = require('autoprefixer');
+var cssnext = require('cssnext');
+var precss = require('precss');
+var partialimport = require('postcss-easy-import');
+var plumber = require('gulp-plumber');
 
-gulp.task('build', ['sass', 'uglify', 'copyimages', 'fonts', 'bower', 'php']);
+gulp.task('build', ['style', 'uglify', 'copyimages', 'fonts', 'bower', 'php', 'language']);
 
 gulp.task('images', ['copyimages', 'images']);
 
@@ -53,14 +60,22 @@ gulp.task('connect-sync', function(){
 
 gulp.task('php', function(){
   return gulp
-    .src(['src/*.php', 'src/.htaccess'])
+    .src(['src/*.php'])
     .pipe(gulp.dest('app'))
+    .pipe(browserSync.stream());
+});
+
+gulp.task('language', function(){
+  return gulp
+    .src(['src/lang/*'])
+    .pipe(gulp.dest('app/lang'))
     .pipe(browserSync.stream());
 });
 
 gulp.task('bower', function(){
   return gulp
     .src('bower_components/**')
+    .pipe(plumber({errorHandler: onError}))
     .pipe(gulp.dest('app/assets/bower'))
     .pipe(browserSync.stream());
 });
@@ -72,16 +87,9 @@ gulp.task('fonts', function(){
     .pipe(browserSync.stream());
 });
 
-gulp.task('sass', function(){
-  return gulp.src('src/scss/main.scss')
-    .pipe(sass().on('error', sass.logError))
-    .pipe(cleanCSS({keepSpecialComments: 1, processImport: true}))
-    .pipe(gulp.dest('app/assets/css/'))
-    .pipe(browserSync.stream());
-});
-
 gulp.task('uglify', function(){
   return gulp.src('src/assets/js/**')
+    .pipe(plumber({errorHandler: onError}))
     .pipe(uglify())
     .pipe(gulp.dest('app/assets/js'))
     .pipe(browserSync.stream());
@@ -95,20 +103,46 @@ gulp.task('copyimages', function(){
 });
 
 gulp.task('images', function(cb){
-    gulp.src(['src/assets/img/**']).pipe(imageop({
+    gulp.src(['src/assets/img/**'])
+    .pipe(plumber({errorHandler: onError}))
+    .pipe(imageop({
         optimizationLevel: 5,
         progressive: true,
-        interlaced: true
-    })).pipe(gulp.dest('app/assets/img')).on('end', cb).on('error', cb)
+        interlaced: true}))
+    .pipe(gulp.dest('app/assets/img'))
+    .pipe(browserSync.stream());
+});
+
+var onError = function (err) {
+  gutil.beep();
+  console.log(err.toString());
+  this.emit('end');
+};
+
+gulp.task('style', function() {
+  var processors = [
+    autoprefixer,
+    partialimport,
+    cssnext({}),
+    precss,
+    csswring
+  ];
+
+  return gulp.src('src/assets/style/main.css')
+    .pipe(plumber({errorHandler: onError}))
+    .pipe(sourcemaps.init())
+    .pipe(postcss(processors))
+    .pipe(sourcemaps.write('.'))
+    .pipe(gulp.dest('app/assets/css'))
     .pipe(browserSync.stream());
 });
 
 gulp.task('watch', function(){
-    gulp.watch(['src/scss/*.scss'], ['sass']);
-    gulp.watch(['src/assets/js/**'], ['uglify']);
-    gulp.watch(['src/assets/img/**'], ['copyimages']);
-    gulp.watch(['src/assets/fonts/**'], ['fonts']);
-    gulp.watch(['bower_components/**'], ['bower']);
-    gulp.watch(['src/.htaccess'], ['php']);
+    gulp.watch(['src/assets/style/*.css'], ['style']);
+    gulp.watch(['src/assets/js/*'], ['uglify']);
+    gulp.watch(['src/assets/img/*'], ['copyimages']);
+    gulp.watch(['src/assets/fonts/*'], ['fonts']);
+    gulp.watch(['bower_components/*'], ['bower']);
+    gulp.watch(['src/lang/*.php'], ['language']);
     gulp.watch(['src/*.php'], ['php']);
 });
