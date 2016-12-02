@@ -11,7 +11,7 @@ var ftp = require('vinyl-ftp');
 var connect = require('gulp-connect-php');
 var browserSync = require('browser-sync');
 var uglify = require('gulp-uglify');
-var imageop = require('gulp-image-optimization');
+var imagemin = require('gulp-imagemin');
 var postcss = require('gulp-postcss');
 var sourcemaps = require('gulp-sourcemaps');
 var csswring = require('csswring');
@@ -102,15 +102,11 @@ gulp.task('copyimages', function(){
     .pipe(browserSync.stream());
 });
 
-gulp.task('images', function(cb){
-    gulp.src(['src/assets/img/**'])
-    .pipe(plumber({errorHandler: onError}))
-    .pipe(imageop({
-        optimizationLevel: 5,
-        progressive: true,
-        interlaced: true}))
-    .pipe(gulp.dest('app/assets/img'))
-    .pipe(browserSync.stream());
+gulp.task('images', function(cb) {
+	return gulp
+			.src('src/assets/img/**')
+			.pipe(imagemin())
+			.pipe(gulp.dest('app/assets/img'))
 });
 
 var onError = function (err) {
