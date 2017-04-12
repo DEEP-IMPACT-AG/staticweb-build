@@ -48,5 +48,6 @@ ___
 * NodeJS
 * Gulp
 * browserSync
+* Babel
 * PostCSS
 * CSSNext
