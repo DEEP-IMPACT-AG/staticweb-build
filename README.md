@@ -1,6 +1,6 @@
 # Static Web Build ![alt text](https://david-dm.org/luangjokaj/staticweb-build/status.svg "Dependencies")
  #
-A simple workflow for static websites, running a PHP web server, Babel transpiler for JavaScript and bundling CSS with PostCSS and CSSNext.
+A simple workflow for static websites with live-reload, running a PHP web server, Babel transpiler for JavaScript and bundling CSS with PostCSS and CSSNext.
 
 ## Setup
 This project requires node version 6. This is the only global dependency.
