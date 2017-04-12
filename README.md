@@ -30,7 +30,7 @@ This will start the development server. The server is based on **browserSync**, 
     │       ├── styles/          # CSS files
     ├── tools/                   # Tools and utilities
     │   ├── stylelintrc.json     # Stylelint configuration file
-    │   ├── IntelliJ.xml         # IntelliJ Code Style
+    │   ├── IntelliJ.xml         # IntelliJ code style
     └── README.md
 
 ___
@@ -44,7 +44,7 @@ The files will be generated in the `app/` directory. The production build automa
 
 ___
 
-# Technologies
+### Technologies
 * NodeJS
 * Gulp
 * browserSync
