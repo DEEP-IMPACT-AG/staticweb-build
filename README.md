@@ -38,6 +38,7 @@ This will start the development server. The server is based on **browserSync**, 
     └── package.json             # Node packages
     └── README.md                # You are reading this
 
+**Note:**  Your project files: `src/
 ___
 
 ## Production
