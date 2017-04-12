@@ -31,7 +31,11 @@ This will start the development server. The server is based on **browserSync**, 
     ├── tools/                   # Tools and utilities
     │   ├── stylelintrc.json     # Stylelint configuration file
     │   ├── IntelliJ.xml         # IntelliJ code style
-    └── README.md
+    └── .babelrc                 # Babel configuration
+    └── .gitignore               # Git ignored files
+    └── LICENSE                  # License agreements
+    └── package.json             # Node packages
+    └── README.md                # You are reading this
 
 ___
 
