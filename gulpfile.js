@@ -64,14 +64,15 @@ gulp.task('connect-sync', function () {
 });
 
 gulp.task('copy-php', function () {
-    return gulp
-        .src(['src/*.php'])
+    return gulp.src(['src/*.php'])
+        .pipe(plumber({ errorHandler: onError }))
         .pipe(gulp.dest('app'))
         .pipe(browserSync.stream());
 });
 
 gulp.task('process-php', function () {
     return gulp.src(['src/*.html', 'src/*.php'])
+        .pipe(plumber({ errorHandler: onError }))
         .pipe(htmlmin({
             collapseWhitespace: true,
             ignoreCustomFragments: [/<%[\s\S]*?%>/, /<\?[=|php]?[\s\S]*?\?>/]
@@ -81,8 +82,8 @@ gulp.task('process-php', function () {
 
 gulp.task('footer-scripts-dev', function () {
     return gulp.src(footerJS)
-        .pipe(sourcemaps.init())
         .pipe(plumber({ errorHandler: onError }))
+        .pipe(sourcemaps.init())
         .pipe(babel({
             presets: ['env']
         }))
@@ -105,22 +106,22 @@ gulp.task('footer-scripts-prod', function () {
 });
 
 gulp.task('copy-fonts', function () {
-    return gulp
-        .src('src/assets/fonts/**')
+    return gulp.src('src/assets/fonts/**')
+        .pipe(plumber({ errorHandler: onError }))
         .pipe(gulp.dest('app/assets/fonts'))
         .pipe(browserSync.stream());
 });
 
 gulp.task('copy-images', function () {
-    return gulp
-        .src('src/assets/img/**')
+    return gulp.src('src/assets/img/**')
+        .pipe(plumber({ errorHandler: onError }))
         .pipe(gulp.dest('app/assets/img'))
         .pipe(browserSync.stream());
 });
 
 gulp.task('process-images', function (cb) {
-    return gulp
-        .src('src/assets/img/**')
+    return gulp.src('src/assets/img/**')
+        .pipe(plumber({ errorHandler: onError }))
         .pipe(imagemin())
         .pipe(gulp.dest('app/assets/img'))
 });
@@ -133,6 +134,7 @@ var plugins = [
 
 gulp.task('style-dev', function () {
     return gulp.src('src/assets/style/main.css')
+        .pipe(plumber({ errorHandler: onError }))
         .pipe(sourcemaps.init())
         .pipe(postcss(plugins))
         .pipe(sourcemaps.write('.'))
@@ -142,6 +144,7 @@ gulp.task('style-dev', function () {
 
 gulp.task('style-prod', function () {
     return gulp.src('src/assets/style/main.css')
+        .pipe(plumber({ errorHandler: onError }))
         .pipe(postcss(plugins))
         .pipe(gulp.dest('app/assets/css'));
 });
