@@ -1,4 +1,5 @@
-# Static Web Build #
+# Static Web Build ![alt text](https://david-dm.org/luangjokaj/staticweb-build/status.svg "Dependencies")
+ #
 A simple workflow for static websites, running a PHP web server, Babel transpiler for JavaScript and bundling CSS with PostCSS and CSSNext.
 
 ## Setup
