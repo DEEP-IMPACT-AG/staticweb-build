@@ -1,6 +1,6 @@
 {
   "name": "staticweb",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "main": "gulpfile.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "dev": "gulp build-dev"
   },
   "author": "Luan Gjokaj",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "babel-preset-env": "^1.3.3",
     "browser-sync": "^2.18.8",
