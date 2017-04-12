@@ -1,9 +1,9 @@
 /* -------------------------------------------------------------------------------------------------
 
- Build Configuration
- Contributors: Luan Gjokaj
+    Build Configuration
+    Contributors: Luan Gjokaj
 
- ------------------------------------------------------------------------------------------------ */
+------------------------------------------------------------------------------------------------- */
 var gulp = require('gulp');
 var gutil = require('gulp-util');
 var connect = require('gulp-connect-php');
@@ -19,7 +19,27 @@ var cssnano = require('cssnano');
 var plumber = require('gulp-plumber');
 var htmlmin = require('gulp-htmlmin');
 var babel = require("gulp-babel");
-
+//--------------------------------------------------------------------------------------------------
+/* -------------------------------------------------------------------------------------------------
+    PostCSS Plugins
+------------------------------------------------------------------------------------------------- */
+var plugins = [
+    partialimport,
+    cssnext({}),
+    cssnano()
+];
+//--------------------------------------------------------------------------------------------------
+/* -------------------------------------------------------------------------------------------------
+    Your JavaScript Files
+------------------------------------------------------------------------------------------------- */
+var footerJS = [
+    'node_modules/jquery/dist/jquery.js',
+    'src/assets/js/main.js'
+];
+//--------------------------------------------------------------------------------------------------
+/* -------------------------------------------------------------------------------------------------
+    Start of Build Tasks
+------------------------------------------------------------------------------------------------- */
 gulp.task('build-dev', [
     'style-dev',
     'copy-images',
@@ -40,17 +60,6 @@ gulp.task('build-prod', [
 ]);
 
 gulp.task('default');
-
-var footerJS = [
-    'node_modules/jquery/dist/jquery.js',
-    'src/assets/js/main.js'
-];
-
-var onError = function (err) {
-    gutil.beep();
-    console.log(err.toString());
-    this.emit('end');
-};
 
 gulp.task('connect-sync', function () {
     connect.server({
@@ -126,12 +135,6 @@ gulp.task('process-images', function (cb) {
         .pipe(gulp.dest('app/assets/img'))
 });
 
-var plugins = [
-    partialimport,
-    cssnext({}),
-    cssnano()
-];
-
 gulp.task('style-dev', function () {
     return gulp.src('src/assets/style/main.css')
         .pipe(plumber({ errorHandler: onError }))
@@ -149,6 +152,11 @@ gulp.task('style-prod', function () {
         .pipe(gulp.dest('app/assets/css'));
 });
 
+var onError = function (err) {
+    gutil.beep();
+    console.log(err.toString());
+    this.emit('end');
+};
 
 gulp.task('watch', function () {
     gulp.watch(['src/assets/style/*.css'], ['style-dev']);
@@ -157,3 +165,6 @@ gulp.task('watch', function () {
     gulp.watch(['src/assets/fonts/*'], ['copy-fonts']);
     gulp.watch(['src/*.php'], ['copy-php']);
 });
+/* -------------------------------------------------------------------------------------------------
+    End of Build Tasks
+------------------------------------------------------------------------------------------------- */
