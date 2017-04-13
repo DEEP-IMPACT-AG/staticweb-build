@@ -2,6 +2,22 @@
  #
 A simple workflow for static websites with live-reload, running a PHP web server, Babel transpiler for JavaScript and bundling CSS with PostCSS and CSSNext.
 
+___
+
+### Features
+* Processing styles using PostCSS with CSSNext
+* Babel Transpiler for JavaScript (ES16)
+* JavaScript Concatenating and Minification
+* CSS Minification
+* HTML Compression
+* Image Compression
+* Asset Copying
+* Server for viewing built site with PHP support
+* Live-Reload for the dev environment
+* Creates `app/` directory with built content and assets
+
+___
+
 ## Setup
 This project requires node version 6. This is the only global dependency.
 * NodeJS http://nodejs.org/
