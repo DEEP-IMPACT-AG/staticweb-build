@@ -1,4 +1,4 @@
-# Static Web Build ![alt text](https://david-dm.org/luangjokaj/staticweb-build/status.svg "Dependencies")
+# Static Web Build [![Dependencies](https://david-dm.org/luangjokaj/staticweb-build/status.svg)](https://david-dm.org/luangjokaj/staticweb-build/)
  #
 A simple workflow for static websites with live-reload, running a PHP web server, Babel transpiler for JavaScript and bundling CSS with PostCSS and CSSNext.
 
@@ -77,7 +77,15 @@ ___
 
 ___
 
-## Gulpfile.js
+# Gulpfile.js
+**Note:** The `Gulpfile.js` requires a build restart for any changes to take effect.
+
+### PostCSS Plugins
+Currently, PostCSS has more than 200 plugins. You can find all of the plugins in the [plugins list] or in the [searchable catalog].
+
+[searchable catalog]: http://postcss.parts
+[plugins list]:       https://github.com/postcss/postcss/blob/master/docs/plugins.md
+
 ```javascript
 /* -------------------------------------------------------------------------------------------------
     PostCSS Plugins
@@ -88,12 +96,18 @@ var plugins = [
     cssnano()
 ];
 //--------------------------------------------------------------------------------------------------
+```
+
+### JavaScript Files
+JavaScript files located in the project source directory `src/assets/js/` and are automatically concatenated and included in the build process. However you can add additional / external JavaScript libraries by including the files in the Gulp configuration.
+
+```javascript
 /* -------------------------------------------------------------------------------------------------
     Your JavaScript Files
 ------------------------------------------------------------------------------------------------- */
 var footerJS = [
     'node_modules/jquery/dist/jquery.js',
-    'src/assets/js/main.js'
+    'src/assets/js/*'
 ];
 //--------------------------------------------------------------------------------------------------
 ```
