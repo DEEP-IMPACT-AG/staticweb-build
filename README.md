@@ -9,17 +9,17 @@ ___
 * Babel Transpiler for JavaScript (ES16)
 * JavaScript Concatenating and Minification
 * CSS Minification
-* HTML Compression
+* HTML Minification
 * Image Compression
 * Asset Copying
-* Partial HTML Injection
+* Templating & Partial HTML Injection
 * Server for viewing built site
 * Live-Reload for the dev environment
 * Creates `app/` directory with built content and assets
 
 ___
 
-## Setup
+# Setup
 This project requires node version 6. This is the only global dependency.
 * NodeJS http://nodejs.org/
 
@@ -35,8 +35,13 @@ To start the development server just run the `dev` task.
 ```
 $ npm run dev
 ```
-This will start the development server. The server is based on **browserSync**, supports hot reloading which enables hot swapping of code without reloading the page. The php server is loaded with **gulp-connect-php**.
+This will start the development server. The server is based on **browserSync**, supports live reloading which enables hot swapping of CSS styles without reloading the page.
 
+### Have fun ✌️
+![Terminal](http://i.imgur.com/M8R604H.png)
+
+### Templating
+To avoid repetitve **HTML** code the build uses [gulp-file-include](https://github.com/coderhaoxin/gulp-file-include), it allow us to re-use chunks of code written in separate files. It is recommended to place the included files in the `src/includes` directory to keep track of changes and live-reload.
 
 ### File Structure
     
@@ -113,3 +118,6 @@ var footerJS = [
 ];
 //--------------------------------------------------------------------------------------------------
 ```
+
+## License
+MIT
