@@ -19,6 +19,7 @@ var cssnano = require('cssnano');
 var plumber = require('gulp-plumber');
 var htmlmin = require('gulp-htmlmin');
 var babel = require("gulp-babel");
+var fileinclude = require('gulp-file-include');
 //--------------------------------------------------------------------------------------------------
 /* -------------------------------------------------------------------------------------------------
     PostCSS Plugins
@@ -45,7 +46,7 @@ gulp.task('build-dev', [
     'copy-images',
     'copy-fonts',
     'footer-scripts-dev',
-    'process-php',
+    'process-static-files-dev',
     'connect-sync',
     'watch'
 ]);
@@ -56,7 +57,7 @@ gulp.task('build-prod', [
     'copy-fonts',
     'footer-scripts-prod',
     'process-images',
-    'process-php'
+    'process-static-files-prod'
 ]);
 
 gulp.task('default');
@@ -72,16 +73,28 @@ gulp.task('connect-sync', function () {
     });
 });
 
-gulp.task('copy-php', function () {
-    return gulp.src(['src/*.php'])
+gulp.task('process-static-files-dev', function () {
+    return gulp.src(['src/*.php', 'src/*.html'])
         .pipe(plumber({ errorHandler: onError }))
+        .pipe(fileinclude({
+            filters: {
+                prefix: '@@',
+                basepath: '@file'
+            }
+        }))
         .pipe(gulp.dest('app'))
         .pipe(browserSync.stream());
 });
 
-gulp.task('process-php', function () {
+gulp.task('process-static-files-prod', function () {
     return gulp.src(['src/*.html', 'src/*.php'])
         .pipe(plumber({ errorHandler: onError }))
+        .pipe(fileinclude({
+            filters: {
+                prefix: '@@',
+                basepath: '@file'
+            }
+        }))
         .pipe(htmlmin({
             collapseWhitespace: true,
             ignoreCustomFragments: [/<%[\s\S]*?%>/, /<\?[=|php]?[\s\S]*?\?>/]
@@ -163,7 +176,7 @@ gulp.task('watch', function () {
     gulp.watch(['src/assets/js/*'], ['footer-scripts-dev']);
     gulp.watch(['src/assets/img/*'], ['copy-images']);
     gulp.watch(['src/assets/fonts/*'], ['copy-fonts']);
-    gulp.watch(['src/*.php'], ['copy-php']);
+    gulp.watch(['src/*.php', 'src/*.html', 'src/includes/**'], ['process-static-files-dev']);
 });
 /* -------------------------------------------------------------------------------------------------
     End of Build Tasks

@@ -1,6 +1,6 @@
 # Static Web Build [![Dependencies](https://david-dm.org/luangjokaj/staticweb-build/status.svg)](https://david-dm.org/luangjokaj/staticweb-build/)
  #
-A simple workflow for static websites with live-reload, running a PHP web server, Babel transpiler for JavaScript and bundling CSS with PostCSS and CSSNext.
+A simple workflow for static websites with live-reload local server, Babel transpiler for JavaScript and bundling CSS with PostCSS and CSSNext.
 
 ___
 
@@ -12,7 +12,7 @@ ___
 * HTML Compression
 * Image Compression
 * Asset Copying
-* Server for viewing built site with PHP support
+* Server for viewing built site
 * Live-Reload for the dev environment
 * Creates `app/` directory with built content and assets
 
@@ -46,6 +46,7 @@ This will start the development server. The server is based on **browserSync**, 
     │       ├── fonts/           # Fonts directory
     │       ├── js/              # JavaScript files
     │       ├── styles/          # CSS files
+    │   ├── includes/            # Included partials
     ├── tools/                   # Tools and utilities
     │   ├── stylelintrc.json     # Stylelint configuration file
     │   ├── IntelliJ.xml         # IntelliJ code style
