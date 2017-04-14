@@ -24,7 +24,7 @@ This project requires node version 6. This is the only global dependency.
 * NodeJS http://nodejs.org/
 
 ## Installation
-* Clone Repository: https://github.com/luangjokaj/staticweb-build
+* Clone Repository: https://github.com/DEEP-IMPACT-AG/staticweb-build
 * Install node packages:
 ```
 $ npm install
