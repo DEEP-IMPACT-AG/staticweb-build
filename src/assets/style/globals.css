@@ -1,5 +1,9 @@
 html, body {
 	background: black;
-	color: white;
+	font-family: sans-serif;
+	color: white;;
+}
+
+footer {
 	display: flex;
 }
