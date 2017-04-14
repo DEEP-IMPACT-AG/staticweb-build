@@ -4,10 +4,10 @@
     Contributors: Luan Gjokaj
 
 ------------------------------------------------------------------------------------------------- */
+'use strict';
 var gulp = require('gulp');
 var gutil = require('gulp-util');
-var connect = require('gulp-connect-php');
-var browserSync = require('browser-sync');
+var browserSync = require('browser-sync').create();
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var imagemin = require('gulp-imagemin');
@@ -26,7 +26,9 @@ var fileinclude = require('gulp-file-include');
 ------------------------------------------------------------------------------------------------- */
 var plugins = [
     partialimport,
-    cssnext({}),
+    cssnext({
+        warnForDuplicates: false
+    }),
     cssnano()
 ];
 //--------------------------------------------------------------------------------------------------
@@ -47,9 +49,14 @@ gulp.task('build-dev', [
     'copy-fonts',
     'footer-scripts-dev',
     'process-static-files-dev',
-    'connect-sync',
     'watch'
-]);
+], function () {
+    browserSync.init({
+        server: {
+            baseDir: "app"
+        }
+    });
+});
 
 gulp.task('build-prod', [
     'style-prod',
@@ -62,19 +69,8 @@ gulp.task('build-prod', [
 
 gulp.task('default');
 
-gulp.task('connect-sync', function () {
-    connect.server({
-        base: 'app',
-        port: '8020'
-    }, function () {
-        browserSync({
-            proxy: '127.0.0.1:8020'
-        });
-    });
-});
-
 gulp.task('process-static-files-dev', function () {
-    return gulp.src(['src/*.php', 'src/*.html'])
+    return gulp.src(['src/*.html'])
         .pipe(plumber({ errorHandler: onError }))
         .pipe(fileinclude({
             filters: {
@@ -82,12 +78,11 @@ gulp.task('process-static-files-dev', function () {
                 basepath: '@file'
             }
         }))
-        .pipe(gulp.dest('app'))
-        .pipe(browserSync.stream());
+        .pipe(gulp.dest('app'));
 });
 
 gulp.task('process-static-files-prod', function () {
-    return gulp.src(['src/*.html', 'src/*.php'])
+    return gulp.src(['src/*.html'])
         .pipe(plumber({ errorHandler: onError }))
         .pipe(fileinclude({
             filters: {
@@ -111,8 +106,7 @@ gulp.task('footer-scripts-dev', function () {
         }))
         .pipe(concat('bundle.js'))
         .pipe(sourcemaps.write("."))
-        .pipe(gulp.dest('app/assets/js'))
-        .pipe(browserSync.stream());
+        .pipe(gulp.dest('app/assets/js'));
 });
 
 gulp.task('footer-scripts-prod', function () {
@@ -124,28 +118,26 @@ gulp.task('footer-scripts-prod', function () {
         .pipe(concat('bundle.js'))
         .pipe(uglify())
         .pipe(sourcemaps.write("."))
-        .pipe(gulp.dest('app/assets/js'))
+        .pipe(gulp.dest('app/assets/js'));
 });
 
 gulp.task('copy-fonts', function () {
     return gulp.src('src/assets/fonts/**')
         .pipe(plumber({ errorHandler: onError }))
-        .pipe(gulp.dest('app/assets/fonts'))
-        .pipe(browserSync.stream());
+        .pipe(gulp.dest('app/assets/fonts'));
 });
 
 gulp.task('copy-images', function () {
     return gulp.src('src/assets/img/**')
         .pipe(plumber({ errorHandler: onError }))
-        .pipe(gulp.dest('app/assets/img'))
-        .pipe(browserSync.stream());
+        .pipe(gulp.dest('app/assets/img'));
 });
 
 gulp.task('process-images', function (cb) {
     return gulp.src('src/assets/img/**')
         .pipe(plumber({ errorHandler: onError }))
         .pipe(imagemin())
-        .pipe(gulp.dest('app/assets/img'))
+        .pipe(gulp.dest('app/assets/img'));
 });
 
 gulp.task('style-dev', function () {
@@ -155,7 +147,7 @@ gulp.task('style-dev', function () {
         .pipe(postcss(plugins))
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('app/assets/css'))
-        .pipe(browserSync.stream());
+        .pipe(browserSync.stream({match: '**/*.css'}));
 });
 
 gulp.task('style-prod', function () {
@@ -171,12 +163,34 @@ var onError = function (err) {
     this.emit('end');
 };
 
+var reload = browserSync.reload();
+
+gulp.task('reload-js', ['footer-scripts-dev'], function (done) {
+    browserSync.reload();
+    done();
+});
+
+gulp.task('reload-images', ['copy-images'], function (done) {
+    browserSync.reload();
+    done();
+});
+
+gulp.task('reload-fonts', ['copy-fonts'], function (done) {
+    browserSync.reload();
+    done();
+});
+
+gulp.task('reload-files', ['process-static-files-dev'], function (done) {
+    browserSync.reload();
+    done();
+});
+
 gulp.task('watch', function () {
     gulp.watch(['src/assets/style/*.css'], ['style-dev']);
-    gulp.watch(['src/assets/js/*'], ['footer-scripts-dev']);
-    gulp.watch(['src/assets/img/*'], ['copy-images']);
-    gulp.watch(['src/assets/fonts/*'], ['copy-fonts']);
-    gulp.watch(['src/*.php', 'src/*.html', 'src/includes/**'], ['process-static-files-dev']);
+    gulp.watch(['src/assets/js/*'], ['reload-js']);
+    gulp.watch(['src/assets/img/*'], ['reload-images']);
+    gulp.watch(['src/assets/fonts/*'], ['reload-fonts']);
+    gulp.watch(['src/*.html', 'src/includes/**'], ['reload-files']);
 });
 /* -------------------------------------------------------------------------------------------------
     End of Build Tasks
