@@ -9,12 +9,9 @@
 	}
 })
 
-@@include('./includes/header.html')
+	@@include('./includes/header.html')
+	<h1>Hello world!</h1>
 
-<h1>Hello world!</h1>
-
-@@include('./includes/footer.html')
-
-<script src="assets/js/bundle.js"></script>
-</body>
-</html>
+@@include('./includes/footer.html', {
+	"footerJS": "bundle.js"
+})
