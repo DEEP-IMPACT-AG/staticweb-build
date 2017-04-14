@@ -1,6 +1,6 @@
 # Static Web Build [![Dependencies](https://david-dm.org/luangjokaj/staticweb-build/status.svg)](https://david-dm.org/luangjokaj/staticweb-build/)
  #
-A simple workflow for static websites with live-reload web server, Babel transpiler for JavaScript and bundling CSS with PostCSS and CSSNext.
+A simple workflow for static websites with live-reload local server, Babel transpiler for JavaScript and bundling CSS with PostCSS and CSSNext.
 
 ___
 
