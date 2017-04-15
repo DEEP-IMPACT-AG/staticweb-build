@@ -1,2 +1,3 @@
 @import '../../../node_modules/normalize.css/normalize.css';
+@import '../../../node_modules/aos/dist/aos.css';
 @import 'globals';

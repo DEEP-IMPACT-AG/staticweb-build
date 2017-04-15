@@ -35,6 +35,9 @@ var plugins = [
 /* -------------------------------------------------------------------------------------------------
     Your JavaScript Files
 ------------------------------------------------------------------------------------------------- */
+var headerJS = [
+    'node_modules/aos/dist/aos.js'
+];
 var footerJS = [
     'node_modules/jquery/dist/jquery.js',
     'src/assets/js/**'
@@ -47,6 +50,7 @@ gulp.task('build-dev', [
     'style-dev',
     'copy-images',
     'copy-fonts',
+    'header-scripts-dev',
     'footer-scripts-dev',
     'process-static-files-dev',
     'watch'
@@ -62,6 +66,7 @@ gulp.task('build-prod', [
     'style-prod',
     'copy-images',
     'copy-fonts',
+    'header-scripts-prod',
     'footer-scripts-prod',
     'process-images',
     'process-static-files-prod'
@@ -109,6 +114,16 @@ gulp.task('footer-scripts-dev', function () {
         .pipe(gulp.dest('app/assets/js'));
 });
 
+/* NOTE: On header scripts babel is not executed */
+gulp.task('header-scripts-dev', function () {
+    return gulp.src(headerJS)
+        .pipe(plumber({ errorHandler: onError }))
+        .pipe(sourcemaps.init())
+        .pipe(concat('top.js'))
+        .pipe(sourcemaps.write("."))
+        .pipe(gulp.dest('app/assets/js'));
+});
+
 gulp.task('footer-scripts-prod', function () {
     return gulp.src(footerJS)
         .pipe(plumber({ errorHandler: onError }))
@@ -116,6 +131,16 @@ gulp.task('footer-scripts-prod', function () {
             presets: ['env']
         }))
         .pipe(concat('bundle.js'))
+        .pipe(uglify())
+        .pipe(sourcemaps.write("."))
+        .pipe(gulp.dest('app/assets/js'));
+});
+
+/* NOTE: On header scripts babel is not executed */
+gulp.task('header-scripts-prod', function () {
+    return gulp.src(headerJS)
+        .pipe(plumber({ errorHandler: onError }))
+        .pipe(concat('top.js'))
         .pipe(uglify())
         .pipe(sourcemaps.write("."))
         .pipe(gulp.dest('app/assets/js'));
