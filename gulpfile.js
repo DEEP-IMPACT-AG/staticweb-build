@@ -212,9 +212,9 @@ gulp.task('reload-files', ['process-static-files-dev'], function (done) {
 
 gulp.task('watch', function () {
     gulp.watch(['src/assets/style/**/*.css'], ['style-dev']);
-    gulp.watch(['src/assets/js/*'], ['reload-js']);
-    gulp.watch(['src/assets/img/*'], ['reload-images']);
-    gulp.watch(['src/assets/fonts/*'], ['reload-fonts']);
+    gulp.watch(['src/assets/js/**'], ['reload-js']);
+    gulp.watch(['src/assets/img/**'], ['reload-images']);
+    gulp.watch(['src/assets/fonts/**'], ['reload-fonts']);
     gulp.watch(['src/*.html', 'src/includes/**'], ['reload-files']);
 });
 /* -------------------------------------------------------------------------------------------------
