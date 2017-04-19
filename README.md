@@ -4,7 +4,7 @@ A simple workflow for static websites with live-reload local server, Babel trans
 
 ___
 
-### Features
+### Features ⚡️
 * Processing styles using PostCSS with CSSNext
 * Babel Transpiler for JavaScript (ES16)
 * JavaScript Concatenating and Minification
@@ -19,18 +19,18 @@ ___
 
 ___
 
-# Setup
+# Setup ⚙️
 This project requires node version 6. This is the only global dependency.
 * NodeJS http://nodejs.org/
 
-## Installation
+## Installation 
 * Clone Repository: https://github.com/DEEP-IMPACT-AG/staticweb-build
 * Install node packages:
 ```
 $ npm install
 ```
 
-## Development
+## Development 
 To start the development server just run the `dev` task.
 ```
 $ npm run dev
@@ -112,12 +112,22 @@ JavaScript files located in the project source directory `src/assets/js/` and ar
 /* -------------------------------------------------------------------------------------------------
     Your JavaScript Files
 ------------------------------------------------------------------------------------------------- */
+var headerJS = [
+    'node_modules/aos/dist/aos.js'
+];
 var footerJS = [
     'node_modules/jquery/dist/jquery.js',
-    'src/assets/js/*'
+    'src/assets/js/**'
 ];
 //--------------------------------------------------------------------------------------------------
 ```
+
+The `headerJS` is included **before** the **DOM** is loaded and it does not use Babel for transpiling JavaScript. The `footerJS` is included **after** the **DOM** is loaded, and it goes thourgh Babel.
+
+## Codestyle and Quality Assurance
+The static web build repository comes with its own set of code style rules that can be imported into IntelliJ. The codestyle file can be found here: `tools/IntelliJ.xml`
+
+It is advised to run the command `$ npm run lint:css` before pushing changes, to make sure the codestyle is consitent!
 
 ## License
 MIT
