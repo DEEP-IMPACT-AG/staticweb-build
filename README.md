@@ -23,14 +23,14 @@ ___
 This project requires node version 6. This is the only global dependency.
 * NodeJS http://nodejs.org/
 
-## Installation 
+## Installation ⏳
 * Clone Repository: https://github.com/DEEP-IMPACT-AG/staticweb-build
 * Install node packages:
 ```
 $ npm install
 ```
 
-## Development 
+## Development 👾
 To start the development server just run the `dev` task.
 ```
 $ npm run dev
@@ -40,10 +40,10 @@ This will start the development server. The server is based on **browserSync**, 
 ### Have fun ✌️
 ![Terminal](http://i.imgur.com/M8R604H.png)
 
-### Templating
+### Templating ✍️
 To avoid repetitve **HTML** code the build uses [gulp-file-include](https://github.com/coderhaoxin/gulp-file-include), it allow us to re-use chunks of code written in separate files. It is recommended to place the included files in the `src/includes` directory to keep track of changes and live-reload.
 
-### File Structure
+### File Structure 🏗
     
     ├── app/                     # Distribution files
     ├── src/                     # Source files
@@ -65,7 +65,7 @@ To avoid repetitve **HTML** code the build uses [gulp-file-include](https://gith
 **Note:**  Your project files: `src/`
 ___
 
-## Production
+## Production 🎬
 To build the production files run the `prod` task:
 ```
 $ npm run prod
@@ -74,7 +74,7 @@ The files will be generated in the `app/` directory. The production build automa
 
 ___
 
-### Technologies
+### Technologies 🚀
 * NodeJS
 * Gulp
 * browserSync
@@ -87,7 +87,7 @@ ___
 # Gulpfile.js
 **Note:** The `Gulpfile.js` requires a build restart for any changes to take effect.
 
-### PostCSS Plugins
+### PostCSS Plugins 🎨
 Currently, PostCSS has more than 200 plugins. You can find all of the plugins in the [plugins list] or in the [searchable catalog].
 
 [searchable catalog]: http://postcss.parts
@@ -105,7 +105,7 @@ var plugins = [
 //--------------------------------------------------------------------------------------------------
 ```
 
-### JavaScript Files
+### JavaScript Files ⚒
 JavaScript files located in the project source directory `src/assets/js/` and are automatically concatenated and included in the build process. However you can add additional / external JavaScript libraries by including the files in the Gulp configuration.
 
 ```javascript
@@ -124,10 +124,10 @@ var footerJS = [
 
 The `headerJS` is included **before** the **DOM** is loaded and it does not use Babel for transpiling JavaScript. The `footerJS` is included **after** the **DOM** is loaded, and it goes thourgh Babel.
 
-## Codestyle and Quality Assurance
+## Codestyle and Quality Assurance ⚔️
 The static web build repository comes with its own set of code style rules that can be imported into IntelliJ. The codestyle file can be found here: `tools/IntelliJ.xml`
 
 It is advised to run the command `$ npm run lint:css` before pushing changes, to make sure the codestyle is consitent!
 
-## License
+## License ⚖️
 MIT
