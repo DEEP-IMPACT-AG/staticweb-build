@@ -158,10 +158,14 @@ gulp.task('copy-images', function () {
         .pipe(gulp.dest('app/assets/img'));
 });
 
-gulp.task('process-images', function (cb) {
+gulp.task('process-images', function () {
     return gulp.src('src/assets/img/**')
         .pipe(plumber({ errorHandler: onError }))
-        .pipe(imagemin())
+        .pipe(imagemin([
+            imagemin.svgo({plugins: [{removeViewBox: true}]})
+        ], {
+            verbose: true
+        }))
         .pipe(gulp.dest('app/assets/img'));
 });
 
