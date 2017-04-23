@@ -72,6 +72,12 @@ $ npm run prod
 ```
 The files will be generated in the `app/` directory. The production build automatically minifies the html and css. By default also the javascript files are concatenated in one bundle: `assets/js/bundle.js`.
 
+## Image Optimization 🌅
+For image optimization and SVG compression run:
+```
+$ npm run images
+```
+
 ___
 
 ### Technologies 🚀

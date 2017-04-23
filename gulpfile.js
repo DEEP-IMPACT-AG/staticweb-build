@@ -68,7 +68,6 @@ gulp.task('build-prod', [
     'copy-fonts',
     'header-scripts-prod',
     'footer-scripts-prod',
-    'process-images',
     'process-static-files-prod'
 ]);
 
