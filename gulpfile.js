@@ -20,6 +20,7 @@ var plumber = require('gulp-plumber');
 var htmlmin = require('gulp-htmlmin');
 var babel = require("gulp-babel");
 var fileinclude = require('gulp-file-include');
+var modRewrite = require('connect-modrewrite');
 //--------------------------------------------------------------------------------------------------
 /* -------------------------------------------------------------------------------------------------
     PostCSS Plugins
@@ -58,7 +59,12 @@ gulp.task('build-dev', [
     browserSync.init({
         server: {
             baseDir: "app"
-        }
+        },
+        middleware: [
+            modRewrite([
+                '^.([^\\.]+)$ /$1.html [L]'
+            ])
+        ]
     });
 });
 

@@ -33,6 +33,7 @@
 		"postcss-easy-import": "^2.0.0"
 	},
 	"devDependencies": {
+		"connect-modrewrite": "^0.10.1",
 		"stylelint-config-standard": "^16.0.0"
 	}
 }
