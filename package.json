@@ -28,7 +28,7 @@
 		"gulp-uglify": "^2.1.2",
 		"gulp-util": "^3.0.8",
 		"jquery": "^3.2.1",
-		"normalize.css": "^6.0.0",
+		"normalize.css": "^7.0.0",
 		"postcss-cssnext": "^2.10.0",
 		"postcss-easy-import": "^2.0.0"
 	},
