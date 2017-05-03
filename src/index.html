@@ -1,6 +1,7 @@
 @@include('./includes/helmet.html', {
 	"title": "Static Web Build",
 	"description": "Hello World",
+	"headerJS": "top.js",
 	"socials": {
 		"title": "Static Web Build",
 		"thumbnail": "http://www.url.to/assets/img/thumb.png",
@@ -10,7 +11,7 @@
 })
 
 	@@include('./includes/header.html')
-	<h1>Hello world!</h1>
+	<h1 data-aos="fade-zoom-in" data-aos-offset="200" data-aos-easing="ease-in-sine" data-aos-duration="600">Hello world!</h1>
 
 @@include('./includes/footer.html', {
 	"footerJS": "bundle.js"

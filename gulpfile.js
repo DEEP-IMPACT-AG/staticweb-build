@@ -20,6 +20,7 @@ var plumber = require('gulp-plumber');
 var htmlmin = require('gulp-htmlmin');
 var babel = require("gulp-babel");
 var fileinclude = require('gulp-file-include');
+var modRewrite = require('connect-modrewrite');
 //--------------------------------------------------------------------------------------------------
 /* -------------------------------------------------------------------------------------------------
     PostCSS Plugins
@@ -35,6 +36,9 @@ var plugins = [
 /* -------------------------------------------------------------------------------------------------
     Your JavaScript Files
 ------------------------------------------------------------------------------------------------- */
+var headerJS = [
+    'node_modules/aos/dist/aos.js'
+];
 var footerJS = [
     'node_modules/jquery/dist/jquery.js',
     'src/assets/js/**'
@@ -47,6 +51,7 @@ gulp.task('build-dev', [
     'style-dev',
     'copy-images',
     'copy-fonts',
+    'header-scripts-dev',
     'footer-scripts-dev',
     'process-static-files-dev',
     'watch'
@@ -54,7 +59,12 @@ gulp.task('build-dev', [
     browserSync.init({
         server: {
             baseDir: "app"
-        }
+        },
+        middleware: [
+            modRewrite([
+                '^.([^\\.]+)$ /$1.html [L]'
+            ])
+        ]
     });
 });
 
@@ -62,8 +72,8 @@ gulp.task('build-prod', [
     'style-prod',
     'copy-images',
     'copy-fonts',
+    'header-scripts-prod',
     'footer-scripts-prod',
-    'process-images',
     'process-static-files-prod'
 ]);
 
@@ -109,6 +119,16 @@ gulp.task('footer-scripts-dev', function () {
         .pipe(gulp.dest('app/assets/js'));
 });
 
+/* NOTE: On header scripts babel is not executed */
+gulp.task('header-scripts-dev', function () {
+    return gulp.src(headerJS)
+        .pipe(plumber({ errorHandler: onError }))
+        .pipe(sourcemaps.init())
+        .pipe(concat('top.js'))
+        .pipe(sourcemaps.write("."))
+        .pipe(gulp.dest('app/assets/js'));
+});
+
 gulp.task('footer-scripts-prod', function () {
     return gulp.src(footerJS)
         .pipe(plumber({ errorHandler: onError }))
@@ -116,6 +136,16 @@ gulp.task('footer-scripts-prod', function () {
             presets: ['env']
         }))
         .pipe(concat('bundle.js'))
+        .pipe(uglify())
+        .pipe(sourcemaps.write("."))
+        .pipe(gulp.dest('app/assets/js'));
+});
+
+/* NOTE: On header scripts babel is not executed */
+gulp.task('header-scripts-prod', function () {
+    return gulp.src(headerJS)
+        .pipe(plumber({ errorHandler: onError }))
+        .pipe(concat('top.js'))
         .pipe(uglify())
         .pipe(sourcemaps.write("."))
         .pipe(gulp.dest('app/assets/js'));
@@ -133,10 +163,14 @@ gulp.task('copy-images', function () {
         .pipe(gulp.dest('app/assets/img'));
 });
 
-gulp.task('process-images', function (cb) {
+gulp.task('process-images', function () {
     return gulp.src('src/assets/img/**')
         .pipe(plumber({ errorHandler: onError }))
-        .pipe(imagemin())
+        .pipe(imagemin([
+            imagemin.svgo({plugins: [{removeViewBox: true}]})
+        ], {
+            verbose: true
+        }))
         .pipe(gulp.dest('app/assets/img'));
 });
 
@@ -186,10 +220,10 @@ gulp.task('reload-files', ['process-static-files-dev'], function (done) {
 });
 
 gulp.task('watch', function () {
-    gulp.watch(['src/assets/style/*.css'], ['style-dev']);
-    gulp.watch(['src/assets/js/*'], ['reload-js']);
-    gulp.watch(['src/assets/img/*'], ['reload-images']);
-    gulp.watch(['src/assets/fonts/*'], ['reload-fonts']);
+    gulp.watch(['src/assets/style/**/*.css'], ['style-dev']);
+    gulp.watch(['src/assets/js/**'], ['reload-js']);
+    gulp.watch(['src/assets/img/**'], ['reload-images']);
+    gulp.watch(['src/assets/fonts/**'], ['reload-fonts']);
     gulp.watch(['src/*.html', 'src/includes/**'], ['reload-files']);
 });
 /* -------------------------------------------------------------------------------------------------
