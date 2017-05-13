@@ -25,7 +25,13 @@ var modRewrite = require('connect-modrewrite');
 /* -------------------------------------------------------------------------------------------------
     PostCSS Plugins
 ------------------------------------------------------------------------------------------------- */
-var plugins = [
+var pluginsDev = [
+    partialimport,
+    cssnext({
+        warnForDuplicates: false
+    })
+];
+var pluginsProd = [
     partialimport,
     cssnext({
         warnForDuplicates: false
@@ -178,7 +184,7 @@ gulp.task('style-dev', function () {
     return gulp.src('src/assets/style/main.css')
         .pipe(plumber({ errorHandler: onError }))
         .pipe(sourcemaps.init())
-        .pipe(postcss(plugins))
+        .pipe(postcss(pluginsDev))
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('app/assets/css'))
         .pipe(browserSync.stream({match: '**/*.css'}));
@@ -187,7 +193,7 @@ gulp.task('style-dev', function () {
 gulp.task('style-prod', function () {
     return gulp.src('src/assets/style/main.css')
         .pipe(plumber({ errorHandler: onError }))
-        .pipe(postcss(plugins))
+        .pipe(postcss(pluginsProd))
         .pipe(gulp.dest('app/assets/css'));
 });
 
