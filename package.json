@@ -23,7 +23,7 @@
 		"gulp-htmlmin": "^3.0.0",
 		"gulp-imagemin": "^3.2.0",
 		"gulp-plumber": "^1.1.0",
-		"gulp-postcss": "^7.0.0",
+		"gulp-postcss": "^6.4.0",
 		"gulp-sourcemaps": "^2.6.0",
 		"gulp-uglify": "^2.1.2",
 		"gulp-util": "^3.0.8",
