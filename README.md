@@ -5,7 +5,7 @@ ___
 
 ### Features ⚡️
 * Processing styles using PostCSS with CSSNext
-* Babel Transpiler for JavaScript (ES16)
+* Babel Transpiler for JavaScript (ES6)
 * JavaScript Concatenating and Minification
 * CSS Minification
 * HTML Minification
