@@ -76,6 +76,7 @@ gulp.task('build-dev', [
 
 gulp.task('build-prod', [
 	'style-prod',
+	'copy-htaccess',
 	'copy-images',
 	'copy-fonts',
 	'header-scripts-prod',
@@ -155,6 +156,12 @@ gulp.task('header-scripts-prod', function () {
 		.pipe(uglify())
 		.pipe(sourcemaps.write("."))
 		.pipe(gulp.dest('app/assets/js'));
+});
+
+gulp.task('copy-htaccess', function () {
+	return gulp.src('src/etc/.htaccess')
+		.pipe(plumber({ errorHandler: onError }))
+		.pipe(gulp.dest('app'));
 });
 
 gulp.task('copy-fonts', function () {
