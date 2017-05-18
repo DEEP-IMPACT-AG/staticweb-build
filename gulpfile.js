@@ -144,7 +144,6 @@ gulp.task('footer-scripts-prod', function () {
 		}))
 		.pipe(concat('bundle.js'))
 		.pipe(uglify())
-		.pipe(sourcemaps.write("."))
 		.pipe(gulp.dest('app/assets/js'));
 });
 
@@ -154,7 +153,6 @@ gulp.task('header-scripts-prod', function () {
 		.pipe(plumber({ errorHandler: onError }))
 		.pipe(concat('top.js'))
 		.pipe(uglify())
-		.pipe(sourcemaps.write("."))
 		.pipe(gulp.dest('app/assets/js'));
 });
 
