@@ -51,6 +51,7 @@ To avoid repetitve **HTML** code the build uses [gulp-file-include](https://gith
     │       ├── fonts/           # Fonts directory
     │       ├── js/              # JavaScript files
     │       ├── styles/          # CSS files
+    │   ├── etc/                 # Additional build files
     │   ├── includes/            # Included partials
     ├── tools/                   # Tools and utilities
     │   ├── stylelintrc.json     # Stylelint configuration file
