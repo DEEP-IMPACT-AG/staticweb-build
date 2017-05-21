@@ -31,7 +31,7 @@ var pluginsDev = [
 ];
 var pluginsProd = [
 	partialimport,
-	cssnext(),
+	cssnext({warnForDuplicates: false}),
 	cssnano()
 ];
 //--------------------------------------------------------------------------------------------------
