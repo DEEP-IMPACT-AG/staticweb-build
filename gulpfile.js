@@ -27,15 +27,11 @@ var modRewrite = require('connect-modrewrite');
  ------------------------------------------------------------------------------------------------- */
 var pluginsDev = [
 	partialimport,
-	cssnext({
-		warnForDuplicates: false
-	})
+	cssnext()
 ];
 var pluginsProd = [
 	partialimport,
-	cssnext({
-		warnForDuplicates: false
-	}),
+	cssnext(),
 	cssnano()
 ];
 //--------------------------------------------------------------------------------------------------
