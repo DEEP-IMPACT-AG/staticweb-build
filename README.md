@@ -40,7 +40,58 @@ This will start the development server. The server is based on **browserSync**, 
 ![Terminal](http://i.imgur.com/6s4DUqT.png)
 
 ### Templating ✍️
-To avoid repetitive **HTML** code the build uses [gulp-file-include](https://github.com/coderhaoxin/gulp-file-include), it allow us to re-use chunks of code written in separate files. It is recommended to place the included files in the `src/includes` directory to keep track of changes and live-reload.
+To avoid repetitive **HTML** code the build uses [gulp-file-include](https://github.com/coderhaoxin/gulp-file-include), it allow us to re-use chunks of code written in separate files. It is recommended to place the included files in the `/src/includes` directory to keep track of changes and live-reload.
+
+**Simple Include**
+```javascript
+@@include(‘./includes/header.html')
+```
+
+**Include with Parameters**
+```javascript
+@@include('./includes/helmet.html', {
+	"title": "Static Web Build"
+})
+```
+
+/includes/helmet.html
+```html
+<title>@@title</title>
+```
+
+**If Statement**
+```javascript
+@@include(‘./includes/header.html’{
+	"menu": true
+});
+```
+
+/includes/header.html
+```html
+<article>
+	<h1>@@title</h1>
+	@@text
+</article>
+```
+
+**Loop**
+```html
+<body>
+	@@loop(‘./includes/loop-article.html’, [
+		{ "title": "My post title", "text": "<p>lorem ipsum...</p>" },
+		{ "title": "Another post", "text": "<p>lorem ipsum...</p>" },
+		{ "title": "One more post", "text": "<p>lorem ipsum...</p>" }
+	])
+</body>
+```
+
+/includes/loop-article.html
+```html
+<article>
+	<h1>@@title</h1>
+	@@text
+</article>
+```
 
 ### File Structure 🏗
     
