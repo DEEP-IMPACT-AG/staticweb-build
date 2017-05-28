@@ -1,0 +1,206 @@
+<article>
+	<p>
+		A simple workflow for static websites with live-reload local server,
+		Babel transpiler for JavaScript and bundling CSS with PostCSS and CSSNext.
+	</p>
+	<hr>
+	<h1>Features ⚡️</h1>
+	<ul>
+		<li>Processing styles using PostCSS with CSSNext</li>
+		<li>Babel Transpiler for JavaScript (ES6)</li>
+		<li>JavaScript Concatenating and Minification</li>
+		<li>CSS Minification</li>
+		<li>HTML Minification</li>
+		<li>Image Compression</li>
+		<li>Asset Copying</li>
+		<li>Templating & Partial HTML Injection</li>
+		<li>Server for viewing built site</li>
+		<li>Live-Reload for the dev environment</li>
+		<li>Creates app/ directory with built content and assets</li>
+	</ul>
+	<hr>
+	<h1>Setup ⚙️</h1>
+	<p>This project requires node version 6. This is the only global dependency.</p>
+	<ul>
+		<li>
+			NodeJS <a href="http://nodejs.org/" target="_blank">http://nodejs.org/</a>
+		</li>
+	</ul>
+	<hr>
+	<p>
+		Clone Repository: https://github.com/DEEP-IMPACT-AG/staticweb-build
+		Install node packages
+	</p>
+	<em>
+		$ npm install
+	</em>
+	<hr>
+	<h1>Development 👾</h1>
+	<p>
+		To start the development server just run the dev task.
+	</p>
+	<em>
+		$ npm run dev
+	</em>
+	<br>
+	<p>
+		This will start the development server. The server is based on browserSync, supports live reloading which enables hot swapping of CSS styles without reloading the page.
+	</p>
+	<img src="https://camo.githubusercontent.com/4efe063df3cea4fcf07dad764753c5df637c04f2/687474703a2f2f692e696d6775722e636f6d2f367334445571542e706e67" alt="Terminal 🎱">
+	<hr>
+	<h1>Templating ✍️</h1>
+	<p>
+		To avoid repetitive HTML code the build uses gulp-file-include, allowing to re-use chunks of code written in separate files. It is recommended to place the included files in the
+		/src/includes directory to keep track of changes and live-reload.
+	</p>
+	<p><strong>Simple Include</strong></p>
+	<em>
+		&#64;&#64;include(‘./includes/header.html')
+	</em>
+	<br>
+	<p><strong>Include with Parameters</strong></p>
+	<em>
+		&#64;&#64;include('./includes/helmet.html', { <br>
+		&nbsp;&nbsp;&nbsp;&nbsp;"title": "Static Web Build"<br>
+		})
+	</em>
+	<br>
+	<p>/includes/helmet.html</p>
+	<em>
+		&#60;title>&#64;&#64;title&#60;/title&#62;
+
+	</em>
+	<br>
+	<p><strong>If Statement</strong></p>
+	<em>
+		&#64;&#64;include(‘./includes/header.html’{<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;"menu": true<br>
+		});
+	</em>
+	<br>
+	<p>/includes/header.html</p>
+	<em>
+		&#64;&#64;if (menu === true) {<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&#64;&#64;include('./includes/menu.html')<br>
+		}
+	</em>
+	<br>
+	<p><strong>Loops</strong></p>
+	<em>
+		&#60;body&#62;
+		&#64;&#64;loop(‘./includes/loop-article.html’, [<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;{ "title": "My post title", "text": "lorem ipsum..." },<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;{ "title": "Another post", "text": "lorem ipsum..." },<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;{ "title": "One more post", "text": "lorem ipsum..." }<br>
+		])
+		&#60;/body&#62;
+
+	</em>
+	<br>
+	<p>/includes/loop-article.html</p>
+	<em>
+		&#60;article&#62;<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&#60;h1&#62;&#64;&#64;title&#60;/h1&#62;<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&#64;&#64;text<br>
+		&#60;/article&#62;
+	</em>
+	<hr>
+	<h1>File Structure 🏗</h1>
+	<em>
+		├── app/<br>
+		├── src/<br>
+		│   ├── assets/<br>
+		│       ├── img/<br>
+		│       ├── fonts/<br>
+		│       ├── js/<br>
+		│       ├── styles/<br>
+		│   ├── etc/<br>
+		│   ├── includes/<br>
+		├── tools/<br>
+		│   ├── stylelintrc.json<br>
+		│   ├── IntelliJ.xml<br>
+		└── .babelrc<br>
+		└── .gitignore<br>
+		└── gulpfile.js<br>
+		└── LICENSE<br>
+		└── package.json<br>
+		└── README.md
+	</em>
+	<br>
+	<p>
+		<strong>Note:</strong> Your project files: src/
+	</p>
+	<hr>
+	<h1>Production 🎬</h1>
+	<p>To build the production files run the prod task:</p>
+	<em>
+		$ npm run prod
+	</em>
+	<br>
+	<p>
+		The files will be generated in the app/ directory. The production build automatically minifies the html and css. By default also the javascript files are concatenated in one bundle: assets/js/bundle.js.
+	</p>
+	<hr>
+	<h1>Image Optimization 🌅</h1>
+	<p>For image optimization and SVG compression run:</p>
+	<em>
+		$ npm run images
+	</em>
+	<hr>
+	<h1>Technologies 🚀</h1>
+	<ul>
+		<li>NodeJS</li>
+		<li>Gulp</li>
+		<li>browserSync</li>
+		<li>Babel</li>
+		<li>PostCSS</li>
+		<li>CSSNext</li>
+	</ul>
+	<hr>
+	<h1>Gulpfile.js</h1>
+	<p>
+		<strong>Note:</strong> The Gulpfile.js requires a build restart for any changes to take effect.
+	</p>
+	<hr>
+	<h1>PostCSS Plugins 🎨</h1>
+	<p>Currently, PostCSS has more than 200 plugins. You can find all of the plugins in the plugins list or in the searchable catalog.</p>
+	<em>
+		var pluginsDev = [<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;partialimport,<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;cssnext()<br>
+		];<br>
+		var pluginsProd = [<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;partialimport,<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;cssnext(),<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;cssnano()<br>
+		];
+	</em>
+	<hr>
+	<h1>JavaScript Files ⚒</h1>
+	<p>
+		JavaScript files located in the project source directory src/assets/js/ and are automatically concatenated and included in the build process. However you can add additional / external JavaScript libraries by including the files in the Gulp configuration.
+	</p>
+	<em>
+		var headerJS = [<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;'node_modules/aos/dist/aos.js'<br>
+		];<br>
+		var footerJS = [<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;'node_modules/jquery/dist/jquery.js',<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;'src/assets/js/**'<br>
+		];
+	</em>
+	<br>
+	<p>
+		The headerJS is included before the DOM is loaded and it does not use Babel for transpiling JavaScript. The footerJS is included after the DOM is loaded, and it goes thourgh Babel.
+	</p>
+	<hr>
+	<h1>Codestyle and Quality Assurance ⚔️</h1>
+	<p>
+		The static web build repository comes with its own set of code style rules that can be imported into IntelliJ. The codestyle file can be found here: tools/IntelliJ.xml
+		<br><br>
+		It is advised to run the command $ npm run lint:css before pushing changes, to make sure the codestyle is consitent!
+	</p>
+	<hr>
+	<h1>License ⚖️</h1>
+	<p>MIT</p>
+</article>

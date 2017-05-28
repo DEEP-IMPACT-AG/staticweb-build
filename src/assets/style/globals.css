@@ -1,9 +1,7 @@
 html, body {
-	background: black;
-	font-family: sans-serif;
-	color: white;;
-}
-
-footer {
-	display: flex;
+	background: url('../img/bg.svg') var(--white);
+	color: var(--black);
+	font-family: 'Titillium Web', sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }

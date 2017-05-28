@@ -1,0 +1,137 @@
+header {
+	box-sizing: border-box;
+	padding: 35px 20px;
+	width: 100%;
+	border-bottom: solid 1px color(var(--primary-color) alpha(-50%));
+	text-align: center;
+	box-shadow: var(--shadow);
+	background: var(--white);
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 10;
+	transition: all 1s ease;
+}
+
+[data-aos="header-animation"] {
+	transform: translateY(-60px);
+	opacity: 0;
+
+	&.aos-animate {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
+article {
+	max-width: 640px;
+	margin: 165px auto 60px;
+	box-shadow: var(--shadow);
+	background: var(--white);
+	box-sizing: border-box;
+	padding: 60px;
+	border: solid 1px color(var(--primary-color) alpha(-50%));
+	border-radius: 10px;
+
+	& img {
+		width: 100%;
+		height: auto;
+		box-shadow: var(--shadow);
+	}
+
+	@media (--screen-mobile) {
+		margin: 125px auto 20px;
+		padding: 20px;
+		width: calc(100% - 40px);
+	}
+}
+
+p {
+	font-size: 14px;
+	margin: 0 0 20px 0;
+}
+
+h1 {
+	font-size: 24px;
+	color: var(--primary-color);
+	font-weight: 600;
+	margin: 0 0 20px 0;
+}
+
+ul {
+	@apply --nolist;
+
+	& li {
+		margin: 5px 0;
+		position: relative;
+		box-sizing: border-box;
+		padding-left: 20px;
+
+		&:before {
+			content: '';
+			display: block;
+			position: absolute;
+			left: 0;
+			top: 5px;
+			width: 8px;
+			height: 8px;
+			background: var(--primary-color);
+			border-radius: 100%;
+		}
+	}
+}
+
+hr {
+	height: 1px;
+	width: 100%;
+	border: none;
+	background: color(var(--primary-color) alpha(-50%));
+	padding: 0;
+	margin: 20px 0;
+}
+
+a {
+	color: var(--primary-color);
+	transition: all 0.3s ease;
+	text-decoration: underline;
+
+	&:hover {
+		color: var(--purple);
+	}
+}
+
+em {
+	background: var(--purple);
+	box-sizing: border-box;
+	padding: 20px;
+	border-radius: 10px;
+	display: block;
+	width: 100%;
+	font-size: 12px;
+	font-weight: 700;
+	color: var(--white);
+	font-style: normal;
+	margin: 0;
+}
+
+img {
+	transition: all 0.3s ease;
+}
+
+footer {
+	max-width: 640px;
+	margin: auto auto 60px auto;
+	text-align: center;
+
+	@media (--screen-mobile) {
+		margin: auto auto 20px auto;
+	}
+
+	& a {
+		&:hover {
+			& img {
+				transform: scale(1.2);
+			}
+		}
+	}
+}
