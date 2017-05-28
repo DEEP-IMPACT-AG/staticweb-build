@@ -40,7 +40,7 @@ This will start the development server. The server is based on **browserSync**, 
 ![Terminal](http://i.imgur.com/6s4DUqT.png)
 
 ### Templating ✍️
-To avoid repetitve **HTML** code the build uses [gulp-file-include](https://github.com/coderhaoxin/gulp-file-include), it allow us to re-use chunks of code written in separate files. It is recommended to place the included files in the `src/includes` directory to keep track of changes and live-reload.
+To avoid repetitive **HTML** code the build uses [gulp-file-include](https://github.com/coderhaoxin/gulp-file-include), it allow us to re-use chunks of code written in separate files. It is recommended to place the included files in the `src/includes` directory to keep track of changes and live-reload.
 
 ### File Structure 🏗
     
