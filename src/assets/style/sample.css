@@ -11,6 +11,32 @@ header {
 	left: 0;
 	z-index: 10;
 	transition: all 1s ease;
+
+	& img {
+		@media (--screen-mobile) {
+			position: relative;
+			top: -20px;
+		}
+	}
+
+	& div {
+		position: absolute;
+		right: 20px;
+		top: 50%;
+		transform: translateY(-50%);
+
+		@media (--screen-mobile) {
+			right: inherit;
+			left: 50%;
+			transform: translate(-50%, calc(-50% + 20px));
+			width: 100%;
+		}
+
+		& iframe {
+			margin: 0 0 0 15px;
+			padding: 0;
+		}
+	}
 }
 
 [data-aos="header-animation"] {
@@ -36,7 +62,7 @@ article {
 	& img {
 		width: 100%;
 		height: auto;
-		box-shadow: var(--shadow);
+		box-shadow: 0 2px 5px 0 var(--primary-color);
 	}
 
 	@media (--screen-mobile) {
