@@ -92,6 +92,7 @@ ul {
 		position: relative;
 		box-sizing: border-box;
 		padding-left: 20px;
+		font-size: 14px;
 
 		&:before {
 			content: '';
