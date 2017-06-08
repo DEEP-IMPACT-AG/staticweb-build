@@ -149,7 +149,7 @@ ___
 **Note:** The `Gulpfile.js` requires a build restart for any changes to take effect.
 
 ### PostCSS Plugins 🎨
-Currently, PostCSS has more than 200 plugins. You can find all of the plugins in the [plugins list] or in the [searchable catalog].
+Currently, [PostCSS](http://postcss.org/) has more than 200 plugins. You can find all of the plugins in the [plugins list] or in the [searchable catalog]. [CSSNext](http://cssnext.io/) is installed in the default configuration.
 
 [searchable catalog]: http://postcss.parts
 [plugins list]:       https://github.com/postcss/postcss/blob/master/docs/plugins.md
