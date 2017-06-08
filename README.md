@@ -33,7 +33,7 @@ $ npm install
 ```
 
 ## Development 👾
-To start the development server just run the `dev` task.
+To start the development server just run the `dev` task:
 ```
 $ npm run dev
 ```
