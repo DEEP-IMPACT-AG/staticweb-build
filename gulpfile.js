@@ -40,6 +40,7 @@ var pluginsProd = [
 	Your JavaScript Files
  ------------------------------------------------------------------------------------------------- */
 var headerJS = [
+	'src/etc/analytics.js',
 	'node_modules/aos/dist/aos.js'
 ];
 var footerJS = [
