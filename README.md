@@ -12,6 +12,7 @@ ___
 * Image Compression
 * Asset Copying
 * Templating & Partial HTML Injection
+* Cache-Busting
 * Server for viewing built site
 * Live-Reload for the dev environment
 * Creates `app/` directory with built content and assets

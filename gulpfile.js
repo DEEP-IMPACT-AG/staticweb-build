@@ -21,6 +21,7 @@ var htmlmin = require('gulp-htmlmin');
 var babel = require("gulp-babel");
 var fileinclude = require('gulp-file-include');
 var modRewrite = require('connect-modrewrite');
+var cachebust = require('gulp-cache-bust');
 //--------------------------------------------------------------------------------------------------
 /* -------------------------------------------------------------------------------------------------
 	PostCSS Plugins
@@ -91,6 +92,9 @@ gulp.task('process-static-files-dev', function () {
 				basepath: '@file'
 			}
 		}))
+		.pipe(cachebust({
+			type: 'timestamp'
+		}))
 		.pipe(gulp.dest('app'));
 });
 
@@ -102,6 +106,9 @@ gulp.task('process-static-files-prod', function () {
 				prefix: '@@',
 				basepath: '@file'
 			}
+		}))
+		.pipe(cachebust({
+			type: 'timestamp'
 		}))
 		.pipe(htmlmin({
 			collapseWhitespace: true,
