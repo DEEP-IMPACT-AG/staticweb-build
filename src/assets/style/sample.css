@@ -162,3 +162,8 @@ footer {
 		}
 	}
 }
+
+.emphasise {
+	border: dashed 1px var(--primary-color);
+	padding: 0 5px;
+}
