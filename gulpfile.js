@@ -22,6 +22,7 @@ var babel = require("gulp-babel");
 var fileinclude = require('gulp-file-include');
 var modRewrite = require('connect-modrewrite');
 var cachebust = require('gulp-cache-bust');
+var del = require('del');
 //--------------------------------------------------------------------------------------------------
 /* -------------------------------------------------------------------------------------------------
 	PostCSS Plugins
@@ -52,6 +53,7 @@ var footerJS = [
 	Start of Build Tasks
  ------------------------------------------------------------------------------------------------- */
 gulp.task('build-dev', [
+	'cleanup',
 	'style-dev',
 	'copy-images',
 	'copy-fonts',
@@ -73,6 +75,7 @@ gulp.task('build-dev', [
 });
 
 gulp.task('build-prod', [
+	'cleanup',
 	'style-prod',
 	'copy-htaccess',
 	'copy-images',
@@ -83,6 +86,10 @@ gulp.task('build-prod', [
 ]);
 
 gulp.task('default');
+
+gulp.task('cleanup', function () {
+	del.sync(['app/**']);
+});
 
 gulp.task('process-static-files-dev', function () {
 	return gulp.src(['src/*.html'])
