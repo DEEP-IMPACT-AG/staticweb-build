@@ -1,7 +1,8 @@
 html, body {
-	background: url('../img/bg.svg') var(--white);
-	color: var(--black);
-	font-family: 'Titillium Web', sans-serif;
+	background-image: var(--gradient);
+	color: var(--medium-gray);
+	font-family: var(--font-text);
+	font-size: 100%;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }

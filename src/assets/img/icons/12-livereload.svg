@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="36px" height="63px" viewBox="0 0 36 63" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 45.2 (43514) - http://www.bohemiancoding.com/sketch -->
+    <title>Icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="New" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="2" transform="translate(-906.000000, -1225.000000)" fill-rule="nonzero" fill="#4D4444">
+            <g id="Features" transform="translate(424.000000, 397.000000)">
+                <g id="Live-Reload" transform="translate(478.000000, 828.000000)">
+                    <polygon id="Icon" points="16.5217391 3.13043478 5.56521739 32.869573 17.3043478 31.3043557 4 62.6087035 40 21.9130435 24.3478261 23.4782452 35.3043478 0"></polygon>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,1 +1,13 @@
-@import url('https://fonts.googleapis.com/css?family=Titillium+Web:300,400,600,700,900');
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400,700');
+
+@font-face {
+	font-family: 'Mayland Script';
+	src: url('../fonts/Mayland Script.eot');
+	src: url('../fonts/Mayland Script.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/Mayland Script.woff') format('woff'),
+	url('../fonts/Mayland Script.ttf')  format('truetype'),
+	url('../fonts/Mayland Script.svg#dd6a2980ea9d6112f2547f17c2e36760') format('svg');
+
+	font-style: normal;
+	font-weight: 400;
+}

@@ -1,10 +1,19 @@
 :root {
-	--primary-color: #A5C1D9;
-	--purple: #D3AAE0;
+	--primary-color: #FF5F6D;
+	--red: var(--primary-color);
+	--orange: #FFC371;
+	--brown: #4D4444;
 	--pink: #FDADAB;
 	--black: #4A4A4A;
 	--white: #FFFFFF;
-	--shadow: 0 2px 5px 0 color(var(--primary-color) alpha(-80%));
+	--light-gray: #E5E5E5;
+	--medium-gray: #B5B1B1;
+	--dark-gray: #4A4A4A;
+	--shadow: 0 2px 15px 0 color(var(--black) alpha(-75%));
+	--gradient: linear-gradient(-90deg, #FF5F6D 0%, #FFC371 100%);
+
+	--font-text: 'Lato', sans-serif;
+	--font-special: 'Mayland Script';
 }
 
 @custom-media --screen-tiny (max-width: 320px);
