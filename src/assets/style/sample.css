@@ -317,6 +317,7 @@ strong {
 	transform: translateX(-50%);
 	opacity: 1;
 	transition: all 0.5s ease;
+	transition-delay: 1s;
 
 	@media (max-width: 865px) {
 		width: calc(100% - 39px);
