@@ -31,10 +31,18 @@ header {
 
 	& .logo {
 		left: 0;
+
+		@media (max-width: 1064px) {
+			left: 20px;
+		}
 	}
 
 	& .github {
 		right: 0;
+
+		@media (max-width: 1064px) {
+			right: 20px;
+		}
 	}
 
 	& .github {
@@ -65,6 +73,10 @@ article {
 	padding: 130px 60px 60px;
 	position: relative;
 
+	@media (max-width: 864px) {
+		width: calc(100% - 40px);
+	}
+
 	& section {
 		max-width: 640px;
 		margin: 0 auto;
@@ -75,9 +87,8 @@ article {
 	}
 
 	@media (--screen-mobile) {
-		margin: 125px auto 20px;
-		padding: 20px;
-		width: calc(100% - 40px);
+		margin: 0 auto 20px;
+		padding: 90px 20px 20px;
 	}
 }
 
@@ -99,11 +110,19 @@ ul.features {
 		padding: 40px 0;
 		margin: 40px 0;
 		position: relative;
-		height: 200px;
+		display: flex;
+
+		@media (--screen-mobile) {
+			display: block;
+		}
+
+		& div {
+			margin: auto;
+		}
 
 		@media (--screen-mobile) {
 			width: 100%;
-			padding: 20px 0 50px 0;
+			padding: 20px 0;
 			margin: 20px 0;
 			height: auto;
 		}
@@ -121,6 +140,8 @@ ul.features {
 			@media (--screen-mobile) {
 				position: inherit;
 				margin-top: 20px;
+				transform: none;
+				width: 100%;
 			}
 		}
 
@@ -143,6 +164,10 @@ h1 {
 	color: var(--primary-color);
 	font-weight: 500;
 	margin: 0 auto 20px auto;
+
+	@media (--screen-mobile) {
+		font-size: 32px;
+	}
 }
 
 ul {
@@ -176,6 +201,10 @@ hr {
 	padding: 0;
 	margin: 80px 0;
 	left: 0;
+
+	@media (--screen-mobile) {
+		margin: 20px 0;
+	}
 
 	&:after {
 		content: '';
@@ -235,6 +264,41 @@ footer {
 }
 
 .emphasise {
-	border: dashed 1px var(--primary-color);
-	padding: 0 5px;
+	background: var(--pink);
+	color: var(--white);
+	padding: 0 3px 2px;
+}
+
+strong {
+	font-weight: 900;
+	color: var(--black);
+}
+
+.nodejs {
+	border: solid 1px var(--light-gray);
+	padding: 15px 30px 15px 50px;
+	margin-bottom: 20px;
+	display: inline-block;
+	text-decoration: none;
+	background: url(../img/icons/node-icon.svg) no-repeat 20px center;
+	background-size: 22px;
+	color: var(--dark-gray);
+	font-weight: bold;
+	border-radius: 6px;
+}
+
+.gulp {
+	position: absolute;
+	right: 0;
+	top: 0;
+
+	@media (--screen-mobile) {
+		height: 40px;
+	}
+}
+
+.relative {
+	position: relative;
+	clear: both;
+	display: block;
 }

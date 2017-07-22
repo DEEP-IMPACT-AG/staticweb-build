@@ -8,64 +8,83 @@
 		<h1>Features️</h1>
 		<ul class="features">
 			<li>
-				<img src="@@webRoot./assets/img/icons/1-postcss.svg" alt="PostCSS">
-				<i>Processing styles with PostCSS</i>
+				<div>
+					<img src="@@webRoot./assets/img/icons/1-postcss.svg" alt="PostCSS">
+					<i>Processing styles with PostCSS</i>
+				</div>
 			</li>
 			<li>
-				<img src="@@webRoot./assets/img/icons/2-cssnext.svg" alt="CSS Next">
-				<i>CSSNext installed by default</i>
+				<div>
+					<img src="@@webRoot./assets/img/icons/2-cssnext.svg" alt="CSS Next">
+					<i>CSSNext installed by default</i>
+				</div>
 			</li>
 			<li>
-				<img src="@@webRoot./assets/img/icons/3-babel.svg" alt="Babel">
-				<i>Babel Transpiler for JavaScript (ES6)</i>
+				<div>
+					<img src="@@webRoot./assets/img/icons/3-babel.svg" alt="Babel">
+					<i>Babel Transpiler for JavaScript (ES6)</i>
+				</div>
 			</li>
 			<li>
-				<img src="@@webRoot./assets/img/icons/4-js.png" alt="JavaScript" width="74" height="74">
-				<i>JavaScript Concatenating and Minification</i>
+				<div>
+					<img src="@@webRoot./assets/img/icons/4-js.png" alt="JavaScript" width="74" height="74">
+					<i>JavaScript Concatenating and Minification</i>
+				</div>
 			</li>
 			<li>
-				<img src="@@webRoot./assets/img/icons/5-cssminification.svg" alt="CSS Minification">
-				<i>CSS Minification</i>
+				<div>
+					<img src="@@webRoot./assets/img/icons/5-cssminification.svg" alt="CSS Minification">
+					<i>CSS Minification</i>
+				</div>
 			</li>
 			<li>
-				<img src="@@webRoot./assets/img/icons/6-htmlminification.svg" alt="HTML Minification">
-				<i>HTML Minification</i>
+				<div>
+					<img src="@@webRoot./assets/img/icons/6-htmlminification.svg" alt="HTML Minification">
+					<i>HTML Minification</i>
+				</div>
 			</li>
 			<li>
-				<img src="@@webRoot./assets/img/icons/7-imagecompression.svg" alt="Image Compression">
-				<i>Image Compression</i>
+				<div>
+					<img src="@@webRoot./assets/img/icons/7-imagecompression.svg" alt="Image Compression">
+					<i>Image Compression</i>
+				</div>
 			</li>
 			<li>
-				<img src="@@webRoot./assets/img/icons/8-assets.png" alt="Asset Copying" width="84" height="111">
-				<i>Asset Copying</i>
+				<div>
+					<img src="@@webRoot./assets/img/icons/8-assets.png" alt="Asset Copying" width="84" height="111">
+					<i>Asset Copying</i>
+				</div>
 			</li>
 			<li>
-				<img src="@@webRoot./assets/img/icons/9-templating.svg" alt="Templating">
-				<i>Templating and Partial HTML Injection
+				<div>
+					<img src="@@webRoot./assets/img/icons/9-templating.svg" alt="Templating">
+					<i>Templating and Partial HTML Injection
+				</div>
 				</i>
 			</li>
 			<li>
-				<img src="@@webRoot./assets/img/icons/10-cache.svg" alt="Cache Busting">
-				<i>Cache Busting</i>
+				<div>
+					<img src="@@webRoot./assets/img/icons/10-cache.svg" alt="Cache Busting">
+					<i>Cache Busting</i>
+				</div>
 			</li>
 			<li>
-				<img src="@@webRoot./assets/img/icons/11-browsersync.svg" alt="BrowserSync">
-				<i>Dev Server for Built Site</i>
+				<div>
+					<img src="@@webRoot./assets/img/icons/11-browsersync.svg" alt="BrowserSync">
+					<i>Dev Server for Built Site</i>
+				</div>
 			</li>
 			<li>
-				<img src="@@webRoot./assets/img/icons/12-livereload.svg" alt="Live Reload">
-				<i>Live Reload</i>
+				<div>
+					<img src="@@webRoot./assets/img/icons/12-livereload.svg" alt="Live Reload">
+					<i>Live Reload</i>
+				</div>
 			</li>
 		</ul>
 		<hr>
 		<h1>Setup️</h1>
 		<p>This project requires node version 6. This is the only global dependency.</p>
-		<ul>
-			<li>
-				NodeJS <a href="http://nodejs.org/" target="_blank">http://nodejs.org/</a>
-			</li>
-		</ul>
-		<hr>
+		<a href="https://nodejs.org/" target="_blank" class="nodejs">NodeJS</a>
 		<p>
 			Clone Repository:
 			<a href="https://github.com/DEEP-IMPACT-AG/staticweb-build" target="_blank">
@@ -96,7 +115,7 @@
 			This will start the development server. The server is based on browserSync, supports live reloading which enables hot swapping of CSS styles without reloading the page.
 		</p>
 		<hr>
-		<h1>Templating ✍️</h1>
+		<h1>Templating</h1>
 		<p>
 			To avoid repetitive HTML code the build uses gulp-file-include, allowing to re-use chunks of code written in separate files. It is recommended to place the included files in the
 			<span class="emphasise">/src/includes</span> directory to keep track of changes and live-reload.
@@ -113,7 +132,7 @@
 			})
 		</em>
 		<br>
-		<p><span class="emphasise">/includes/helmet.html</span></p>
+		<p>Filename: <span class="emphasise">/includes/helmet.html</span></p>
 		<em>
 			&#60;title>&#64;&#64;title&#60;/title&#62;
 
@@ -126,7 +145,7 @@
 			});
 		</em>
 		<br>
-		<p><span class="emphasise">/includes/header.html</span></p>
+		<p>Filename: <span class="emphasise">/includes/header.html</span></p>
 		<em>
 			&#64;&#64;if (menu === true) {<br>
 			&nbsp;&nbsp;&nbsp;&nbsp;&#64;&#64;include('./includes/menu.html')<br>
@@ -145,7 +164,7 @@
 
 		</em>
 		<br>
-		<p><span class="emphasise">/includes/loop-article.html</span></p>
+		<p>Filename: <span class="emphasise">/includes/loop-article.html</span></p>
 		<em>
 			&#60;article&#62;<br>
 			&nbsp;&nbsp;&nbsp;&nbsp;&#60;h1&#62;&#64;&#64;title&#60;/h1&#62;<br>
@@ -153,33 +172,6 @@
 			&#60;/article&#62;
 		</em>
 		<hr>
-		<h1>File Structure 🏗</h1>
-		<em>
-			├── app/<br>
-			├── src/<br>
-			│   ├── assets/<br>
-			│       ├── img/<br>
-			│       ├── fonts/<br>
-			│       ├── js/<br>
-			│       ├── styles/<br>
-			│   ├── etc/<br>
-			│   ├── includes/<br>
-			├── tools/<br>
-			│   ├── stylelintrc.json<br>
-			│   ├── IntelliJ.xml<br>
-			└── .babelrc<br>
-			└── .gitignore<br>
-			└── gulpfile.js<br>
-			└── LICENSE<br>
-			└── package.json<br>
-			└── README.md
-		</em>
-		<br>
-		<p>
-			<strong>Note:</strong> Your project files: <span class="emphasise">src/</span>
-		</p>
-		<hr>
-		<h1>Production 🎬</h1>
 		<p>To build the production files run the prod task:</p>
 		<em>
 			$ npm run prod
@@ -189,28 +181,21 @@
 			The files will be generated in the app/ directory. The production build automatically minifies the html and css. By default also the javascript files are concatenated in one bundle: <span class="emphasise">assets/js/bundle.js</span>.
 		</p>
 		<hr>
-		<h1>Image Optimization 🌅</h1>
+		<h1>Image Optimization</h1>
 		<p>For image optimization and SVG compression run:</p>
 		<em>
 			$ npm run images
 		</em>
 		<hr>
-		<h1>Technologies 🚀</h1>
-		<ul>
-			<li>NodeJS</li>
-			<li>Gulp</li>
-			<li>browserSync</li>
-			<li>Babel</li>
-			<li>PostCSS</li>
-			<li>CSSNext</li>
-		</ul>
-		<hr>
-		<h1>Gulpfile.js</h1>
+		<span class="relative">
+			<h1>Gulpfile.js</h1>
+			<img src="@@webRoot./assets/img/icons/gulp.svg" alt="Gulp" class="gulp">
+		</span>
 		<p>
 			<strong>Note:</strong> The <span class="emphasise">Gulpfile.js</span> requires a build restart for any changes to take effect.
 		</p>
 		<hr>
-		<h1>PostCSS Plugins 🎨</h1>
+		<h1>PostCSS Plugins</h1>
 		<p>Currently, <a href="http://postcss.org/" target="_blank">PostCSS</a> has more than 200 plugins. You can find all of the plugins in the <a href="https://github.com/postcss/postcss/blob/master/docs/plugins.md" target="_blank">plugins list</a> or in the <a href="http://postcss.parts" target="_blank">searchable catalog</a>.
 			<a href="http://cssnext.io/" target="_blank">CSSNext</a> is installed in the default configuration.</p>
 		<em>
@@ -225,7 +210,7 @@
 			];
 		</em>
 		<hr>
-		<h1>JavaScript Files ⚒</h1>
+		<h1>JavaScript Files</h1>
 		<p>
 			JavaScript files located in the project source directory <span class="emphasise">src/assets/js/</span> and are automatically concatenated and included in the build process. However you can add additional / external JavaScript libraries by including the files in the Gulp configuration.
 		</p>
@@ -243,14 +228,14 @@
 			The headerJS is included before the DOM is loaded and it does not use Babel for transpiling JavaScript. The footerJS is included after the DOM is loaded, and it goes thourgh Babel.
 		</p>
 		<hr>
-		<h1>Codestyle and Quality Assurance ⚔️</h1>
+		<h1>Codestyle and Quality Assurance️</h1>
 		<p>
 			The static web build repository comes with its own set of code style rules that can be imported into IntelliJ. The codestyle file can be found here: <span class="emphasise">tools/IntelliJ.xml</span>
 			<br><br>
 			It is advised to run the command <span class="emphasise">$ npm run lint:css</span> before pushing changes, to make sure the codestyle is consitent!
 		</p>
 		<hr>
-		<h1>License ⚖️</h1>
+		<h1>License️</h1>
 		<p>MIT</p>
 	</section>
 </article>
