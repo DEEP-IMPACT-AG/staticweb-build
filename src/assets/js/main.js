@@ -1,6 +1,8 @@
 const header = $('#header');
+const loading = $('.loading');
 
 $(window).on('load', function () {
+	loading.addClass('loaded');
 	setTimeout(function () {
 		$(window).scroll(function () {
 			let scrolled = $(window).scrollTop();

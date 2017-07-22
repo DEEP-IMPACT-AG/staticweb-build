@@ -220,10 +220,10 @@ hr {
 a {
 	color: var(--primary-color);
 	transition: all 0.3s ease;
-	text-decoration: underline;
+	text-decoration: none;
 
 	&:hover {
-		color: var(--purple);
+		color: var(--brown);
 	}
 }
 
@@ -291,9 +291,11 @@ strong {
 	position: absolute;
 	right: 0;
 	top: 0;
+	width: 43px;
+	height: 94px;
 
 	@media (--screen-mobile) {
-		height: 40px;
+		display: none;
 	}
 }
 
@@ -302,3 +304,48 @@ strong {
 	clear: both;
 	display: block;
 }
+
+.loading {
+	position: fixed;
+	top: 0;
+	background: var(--brown);
+	height: 100%;
+	width: 100%;
+	z-index: 5;
+	max-width: 825px;
+	left: 50%;
+	transform: translateX(-50%);
+	opacity: 1;
+	transition: all 0.5s ease;
+
+	&:before {
+		content: "";
+		display: block;
+		border-radius: 50%;
+		width: 24px;
+		height: 24px;
+		border: .25rem solid var(--red);
+		border-top-color: var(--orange);
+		animation: spin 1s infinite linear;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+
+	&.loaded {
+		height: 0;
+	}
+}
+
+
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
