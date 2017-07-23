@@ -1,4 +1,4 @@
-# Static Web Build [![Dependencies](https://david-dm.org/DEEP-IMPACT-AG/staticweb-build/dev-status.svg)](https://david-dm.org/luangjokaj/staticweb-build?type=dev)
+# Static Web Build [![Dependencies](https://david-dm.org/DEEP-IMPACT-AG/staticweb-build/dev-status.svg)](https://david-dm.org/DEEP-IMPACT-AG/staticweb-build?type=dev)
 A simple workflow for static websites with live-reload local server, Babel transpiler for JavaScript and bundling CSS with PostCSS and CSSNext.
 
 🌍 https://staticbuild.website/
