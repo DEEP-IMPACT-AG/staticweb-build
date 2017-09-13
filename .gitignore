@@ -1,8 +1,9 @@
 # Distribution Files
 app/**
 
-# IntelliJ IDE
+# IDE & Editors
 .idea
+.vscode
 
 # OSX
 *.DS_Store
