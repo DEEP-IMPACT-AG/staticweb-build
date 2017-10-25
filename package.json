@@ -14,7 +14,7 @@
 	"devDependencies": {
 		"aos": "^2.2.0",
 		"babel-core": "^6.26.0",
-		"babel-preset-env": "^1.6.0",
+		"babel-preset-env": "^1.6.1",
 		"browser-sync": "^2.18.13",
 		"connect-modrewrite": "^0.10.1",
 		"cssnano": "^3.10.0",
@@ -23,9 +23,9 @@
 		"gulp-babel": "^7.0.0",
 		"gulp-cache-bust": "^1.1.0",
 		"gulp-concat": "^2.6.1",
-		"gulp-file-include": "^1.1.0",
+		"gulp-file-include": "^1.2.0",
 		"gulp-htmlmin": "^3.0.0",
-		"gulp-imagemin": "^3.3.0",
+		"gulp-imagemin": "^3.4.0",
 		"gulp-plumber": "^1.1.0",
 		"gulp-postcss": "^7.0.0",
 		"gulp-sourcemaps": "^2.6.1",
@@ -35,7 +35,7 @@
 		"normalize.css": "^7.0.0",
 		"postcss-cssnext": "^3.0.2",
 		"postcss-easy-import": "^3.0.0",
-		"stylelint": "^8.1.1",
+		"stylelint": "^8.2.1",
 		"stylelint-config-standard": "^17.0.0"
 	}
 }
