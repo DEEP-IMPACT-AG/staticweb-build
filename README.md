@@ -196,7 +196,7 @@ The `headerJS` is included **before** the **DOM** is loaded and it does not use 
 ## Codestyle and Quality Assurance ⚔️
 The static web build repository comes with its own set of code style rules that can be imported into IntelliJ. The codestyle file can be found here: `tools/IntelliJ.xml`
 
-It is advised to run the command `$ npm run lint:css` before pushing changes, to make sure the codestyle is consitent!
+It is advised to run the command `$ npm run lint:css` before pushing changes, to make sure the codestyle is consistent!
 
 ## License ⚖️
 MIT
