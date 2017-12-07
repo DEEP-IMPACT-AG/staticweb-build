@@ -22,7 +22,7 @@ ___
 ___
 
 # Setup ⚙️
-This project requires node version 6. This is the only global dependency.
+This project requires node version 7.5+. This is the only global dependency.
 * NodeJS http://nodejs.org/
 
 ## Installation ⏳
@@ -31,12 +31,8 @@ This project requires node version 6. This is the only global dependency.
 ```
 $ npm install
 ```
-Make sure Gulp is installed Globally:
-```
-$ npm install gulp -g
-```
 
-## Development 👾
+# Development 👾
 To start the development server just run the `dev` task:
 ```
 $ npm run dev
@@ -124,7 +120,7 @@ To avoid repetitive **HTML** code the build uses [gulp-file-include](https://git
 **Note:**  Your project files: `src/`
 ___
 
-## Production 🎬
+# Production 🎬
 To build the production files run the `prod` task:
 ```
 $ npm run prod
@@ -160,7 +156,7 @@ Currently, [PostCSS](http://postcss.org/) has more than 200 plugins. You can fi
 
 ```javascript
 /* -------------------------------------------------------------------------------------------------
-    PostCSS Plugins
+PostCSS Plugins
 ------------------------------------------------------------------------------------------------- */
 var pluginsDev = [
 	partialimport,
@@ -174,7 +170,7 @@ var pluginsProd = [
 //--------------------------------------------------------------------------------------------------
 ```
 
-### JavaScript Files ⚒
+## JavaScript Files ⚒
 JavaScript files located in the project source directory `src/assets/js/` and are automatically concatenated and included in the build process. However you can add additional / external JavaScript libraries by including the files in the Gulp configuration.
 
 ```javascript
@@ -193,10 +189,23 @@ var footerJS = [
 
 The `headerJS` is included **before** the **DOM** is loaded and it does not use Babel for transpiling JavaScript. The `footerJS` is included **after** the **DOM** is loaded, and it goes thourgh Babel.
 
-## Codestyle and Quality Assurance ⚔️
+# Codestyle and Quality Assurance ⚔️
 The static web build repository comes with its own set of code style rules that can be imported into IntelliJ. The codestyle file can be found here: `tools/IntelliJ.xml`
 
 It is advised to run the command `$ npm run lint:css` before pushing changes, to make sure the codestyle is consistent!
 
-## License ⚖️
+# License ⚖️
 MIT
+
+# Changelog
+
+**v0.0.3**
+- Update dependencies.
+- Code legibility.
+
+**v0.0.2**
+- HTML Templating with `gulp-include`.
+- Bugfixes & speed improvements.
+
+**v0.0.1**
+- Initializing Static Web Build.

@@ -1,32 +1,32 @@
 /* -------------------------------------------------------------------------------------------------
 
-	Build Configuration
-	Contributors: Luan Gjokaj
+Build Configuration
+Contributors: Luan Gjokaj
 
- ------------------------------------------------------------------------------------------------- */
+-------------------------------------------------------------------------------------------------- */
 'use strict';
+var babel = require("gulp-babel");
+var browserSync = require('browser-sync').create();
+var cachebust = require('gulp-cache-bust');
+var concat = require('gulp-concat');
+var cssnano = require('cssnano');
+var cssnext = require('postcss-cssnext');
+var del = require('del');
+var fileinclude = require('gulp-file-include');
 var gulp = require('gulp');
 var gutil = require('gulp-util');
-var browserSync = require('browser-sync').create();
-var concat = require('gulp-concat');
-var uglify = require('gulp-uglify');
-var imagemin = require('gulp-imagemin');
-var postcss = require('gulp-postcss');
-var cssnext = require('postcss-cssnext');
-var partialimport = require('postcss-easy-import');
-var sourcemaps = require('gulp-sourcemaps');
-var cssnano = require('cssnano');
-var plumber = require('gulp-plumber');
 var htmlmin = require('gulp-htmlmin');
-var babel = require("gulp-babel");
-var fileinclude = require('gulp-file-include');
+var imagemin = require('gulp-imagemin');
 var modRewrite = require('connect-modrewrite');
-var cachebust = require('gulp-cache-bust');
-var del = require('del');
+var partialimport = require('postcss-easy-import');
+var plumber = require('gulp-plumber');
+var postcss = require('gulp-postcss');
+var sourcemaps = require('gulp-sourcemaps');
+var uglify = require('gulp-uglify');
 //--------------------------------------------------------------------------------------------------
 /* -------------------------------------------------------------------------------------------------
-	PostCSS Plugins
- ------------------------------------------------------------------------------------------------- */
+PostCSS Plugins
+-------------------------------------------------------------------------------------------------- */
 var pluginsDev = [
 	partialimport,
 	cssnext()
@@ -38,8 +38,8 @@ var pluginsProd = [
 ];
 //--------------------------------------------------------------------------------------------------
 /* -------------------------------------------------------------------------------------------------
-	Your JavaScript Files
- ------------------------------------------------------------------------------------------------- */
+Header & Footer JavaScript Boundles
+-------------------------------------------------------------------------------------------------- */
 var headerJS = [
 	'src/etc/analytics.js',
 	'node_modules/aos/dist/aos.js'
@@ -50,8 +50,8 @@ var footerJS = [
 ];
 //--------------------------------------------------------------------------------------------------
 /* -------------------------------------------------------------------------------------------------
-	Start of Build Tasks
- ------------------------------------------------------------------------------------------------- */
+Development Tasks
+-------------------------------------------------------------------------------------------------- */
 gulp.task('build-dev', [
 	'cleanup',
 	'style-dev',
@@ -74,21 +74,37 @@ gulp.task('build-dev', [
 	});
 });
 
-gulp.task('build-prod', [
-	'cleanup',
-	'style-prod',
-	'copy-htaccess',
-	'copy-images',
-	'copy-fonts',
-	'header-scripts-prod',
-	'footer-scripts-prod',
-	'process-static-files-prod'
-]);
-
 gulp.task('default');
 
-gulp.task('cleanup', function () {
-	del.sync(['app/**']);
+gulp.task('style-dev', function () {
+	return gulp.src('src/assets/style/main.css')
+		.pipe(plumber({ errorHandler: onError }))
+		.pipe(sourcemaps.init())
+		.pipe(postcss(pluginsDev))
+		.pipe(sourcemaps.write('.'))
+		.pipe(gulp.dest('app/assets/css'))
+		.pipe(browserSync.stream({ match: '**/*.css' }));
+});
+
+gulp.task('header-scripts-dev', function () {
+	return gulp.src(headerJS)
+		.pipe(plumber({ errorHandler: onError }))
+		.pipe(sourcemaps.init())
+		.pipe(concat('top.js'))
+		.pipe(sourcemaps.write("."))
+		.pipe(gulp.dest('app/assets/js'));
+});
+
+gulp.task('footer-scripts-dev', function () {
+	return gulp.src(footerJS)
+		.pipe(plumber({ errorHandler: onError }))
+		.pipe(sourcemaps.init())
+		.pipe(babel({
+			presets: ['env']
+		}))
+		.pipe(concat('bundle.js'))
+		.pipe(sourcemaps.write("."))
+		.pipe(gulp.dest('app/assets/js'));
 });
 
 gulp.task('process-static-files-dev', function () {
@@ -105,121 +121,6 @@ gulp.task('process-static-files-dev', function () {
 		}))
 		.pipe(gulp.dest('app'));
 });
-
-gulp.task('process-static-files-prod', function () {
-	return gulp.src(['src/*.html'])
-		.pipe(plumber({ errorHandler: onError }))
-		.pipe(fileinclude({
-			filters: {
-				prefix: '@@',
-				basepath: '@file'
-			}
-		}))
-		.pipe(cachebust({
-			type: 'timestamp'
-		}))
-		.pipe(htmlmin({
-			collapseWhitespace: true,
-			ignoreCustomFragments: [/<%[\s\S]*?%>/, /<\?[=|php]?[\s\S]*?\?>/]
-		}))
-		.pipe(gulp.dest('app'));
-});
-
-gulp.task('footer-scripts-dev', function () {
-	return gulp.src(footerJS)
-		.pipe(plumber({ errorHandler: onError }))
-		.pipe(sourcemaps.init())
-		.pipe(babel({
-			presets: ['env']
-		}))
-		.pipe(concat('bundle.js'))
-		.pipe(sourcemaps.write("."))
-		.pipe(gulp.dest('app/assets/js'));
-});
-
-/* NOTE: On header scripts babel is not executed */
-gulp.task('header-scripts-dev', function () {
-	return gulp.src(headerJS)
-		.pipe(plumber({ errorHandler: onError }))
-		.pipe(sourcemaps.init())
-		.pipe(concat('top.js'))
-		.pipe(sourcemaps.write("."))
-		.pipe(gulp.dest('app/assets/js'));
-});
-
-gulp.task('footer-scripts-prod', function () {
-	return gulp.src(footerJS)
-		.pipe(plumber({ errorHandler: onError }))
-		.pipe(babel({
-			presets: ['env']
-		}))
-		.pipe(concat('bundle.js'))
-		.pipe(uglify())
-		.pipe(gulp.dest('app/assets/js'));
-});
-
-/* NOTE: On header scripts babel is not executed */
-gulp.task('header-scripts-prod', function () {
-	return gulp.src(headerJS)
-		.pipe(plumber({ errorHandler: onError }))
-		.pipe(concat('top.js'))
-		.pipe(uglify())
-		.pipe(gulp.dest('app/assets/js'));
-});
-
-gulp.task('copy-htaccess', function () {
-	return gulp.src('src/etc/.htaccess')
-		.pipe(plumber({ errorHandler: onError }))
-		.pipe(gulp.dest('app'));
-});
-
-gulp.task('copy-fonts', function () {
-	return gulp.src('src/assets/fonts/**')
-		.pipe(plumber({ errorHandler: onError }))
-		.pipe(gulp.dest('app/assets/fonts'));
-});
-
-gulp.task('copy-images', function () {
-	return gulp.src('src/assets/img/**')
-		.pipe(plumber({ errorHandler: onError }))
-		.pipe(gulp.dest('app/assets/img'));
-});
-
-gulp.task('process-images', function () {
-	return gulp.src('src/assets/img/**')
-		.pipe(plumber({ errorHandler: onError }))
-		.pipe(imagemin([
-			imagemin.svgo({ plugins: [{ removeViewBox: true }] })
-		], {
-			verbose: true
-		}))
-		.pipe(gulp.dest('app/assets/img'));
-});
-
-gulp.task('style-dev', function () {
-	return gulp.src('src/assets/style/main.css')
-		.pipe(plumber({ errorHandler: onError }))
-		.pipe(sourcemaps.init())
-		.pipe(postcss(pluginsDev))
-		.pipe(sourcemaps.write('.'))
-		.pipe(gulp.dest('app/assets/css'))
-		.pipe(browserSync.stream({ match: '**/*.css' }));
-});
-
-gulp.task('style-prod', function () {
-	return gulp.src('src/assets/style/main.css')
-		.pipe(plumber({ errorHandler: onError }))
-		.pipe(postcss(pluginsProd))
-		.pipe(gulp.dest('app/assets/css'));
-});
-
-var onError = function (err) {
-	gutil.beep();
-	console.log(err.toString());
-	this.emit('end');
-};
-
-var reload = browserSync.reload();
 
 gulp.task('reload-js', ['footer-scripts-dev'], function (done) {
 	browserSync.reload();
@@ -248,6 +149,110 @@ gulp.task('watch', function () {
 	gulp.watch(['src/assets/fonts/**'], ['reload-fonts']);
 	gulp.watch(['src/*.html', 'src/includes/**'], ['reload-files']);
 });
+//--------------------------------------------------------------------------------------------------
 /* -------------------------------------------------------------------------------------------------
-	End of Build Tasks
- ------------------------------------------------------------------------------------------------- */
+Production Tasks
+-------------------------------------------------------------------------------------------------- */
+gulp.task('build-prod', [
+	'cleanup',
+	'style-prod',
+	'copy-htaccess',
+	'copy-images',
+	'copy-fonts',
+	'header-scripts-prod',
+	'footer-scripts-prod',
+	'process-static-files-prod'
+]);
+
+gulp.task('style-prod', function () {
+	return gulp.src('src/assets/style/main.css')
+		.pipe(plumber({ errorHandler: onError }))
+		.pipe(postcss(pluginsProd))
+		.pipe(gulp.dest('app/assets/css'));
+});
+
+gulp.task('copy-htaccess', function () {
+	return gulp.src('src/etc/.htaccess')
+		.pipe(plumber({ errorHandler: onError }))
+		.pipe(gulp.dest('app'));
+});
+
+gulp.task('header-scripts-prod', function () {
+	return gulp.src(headerJS)
+		.pipe(plumber({ errorHandler: onError }))
+		.pipe(concat('top.js'))
+		.pipe(uglify())
+		.pipe(gulp.dest('app/assets/js'));
+});
+
+gulp.task('footer-scripts-prod', function () {
+	return gulp.src(footerJS)
+		.pipe(plumber({ errorHandler: onError }))
+		.pipe(babel({
+			presets: ['env']
+		}))
+		.pipe(concat('bundle.js'))
+		.pipe(uglify())
+		.pipe(gulp.dest('app/assets/js'));
+});
+
+gulp.task('process-static-files-prod', function () {
+	return gulp.src(['src/*.html'])
+		.pipe(plumber({ errorHandler: onError }))
+		.pipe(fileinclude({
+			filters: {
+				prefix: '@@',
+				basepath: '@file'
+			}
+		}))
+		.pipe(cachebust({
+			type: 'timestamp'
+		}))
+		.pipe(htmlmin({
+			collapseWhitespace: true,
+			ignoreCustomFragments: [/<%[\s\S]*?%>/, /<\?[=|php]?[\s\S]*?\?>/]
+		}))
+		.pipe(gulp.dest('app'));
+});
+//--------------------------------------------------------------------------------------------------
+/* -------------------------------------------------------------------------------------------------
+Shared Tasks
+-------------------------------------------------------------------------------------------------- */
+gulp.task('cleanup', function () {
+	del.sync(['app/**']);
+});
+
+gulp.task('copy-images', function () {
+	return gulp.src('src/assets/img/**')
+		.pipe(plumber({ errorHandler: onError }))
+		.pipe(gulp.dest('app/assets/img'));
+});
+
+gulp.task('copy-fonts', function () {
+	return gulp.src('src/assets/fonts/**')
+		.pipe(plumber({ errorHandler: onError }))
+		.pipe(gulp.dest('app/assets/fonts'));
+});
+
+gulp.task('process-images', function () {
+	return gulp.src('src/assets/img/**')
+		.pipe(plumber({ errorHandler: onError }))
+		.pipe(imagemin([
+			imagemin.svgo({ plugins: [{ removeViewBox: true }] })
+		], {
+			verbose: true
+		}))
+		.pipe(gulp.dest('app/assets/img'));
+});
+//--------------------------------------------------------------------------------------------------
+/* -------------------------------------------------------------------------------------------------
+Utilitie Tasks
+-------------------------------------------------------------------------------------------------- */
+var onError = function (err) {
+	gutil.beep();
+	console.log(err.toString());
+	this.emit('end');
+};
+/* -------------------------------------------------------------------------------------------------
+End of all Tasks
+-------------------------------------------------------------------------------------------------- */
