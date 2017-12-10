@@ -254,7 +254,7 @@ Utilitie Tasks
 -------------------------------------------------------------------------------------------------- */
 var swb = '\x1b[44m\x1b[1mStatic Web Build\x1b[0m';
 var swbUrl = '\x1b[2m - https://staticbuild.website/\x1b[0m';
-var thankYou = 'Thank you for using the' + swb + swbUrl;
+var thankYou = 'Thank you for using the ' + swb + swbUrl;
 var errorMsg = '\x1b[41mError\x1b[0m';
 var filesGenerated = 'Your distribution files are generated in: \x1b[1m' + __dirname + '/app/' + '\x1b[0m - ✅';
 
