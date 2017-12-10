@@ -5,7 +5,7 @@ A simple workflow for static websites with live-reload local server, Babel trans
 
 ___
 
-### Features ⚡️
+# Features ⚡️
 * Processing styles using PostCSS with CSSNext
 * Babel Transpiler for JavaScript (ES6)
 * JavaScript Concatenating and Minification
@@ -42,7 +42,7 @@ This will start the development server. The server is based on **browserSync**, 
 ### Have fun ✌️
 ![Terminal](http://i.imgur.com/6s4DUqT.png)
 
-### Templating ✍️
+# Templating ✍️
 To avoid repetitive **HTML** code the build uses [gulp-file-include](https://github.com/coderhaoxin/gulp-file-include), it allow us to re-use chunks of code written in separate files. It is recommended to place the included files in the `/src/includes` directory to keep track of changes and live-reload.
 
 **Simple Include**
@@ -96,7 +96,7 @@ To avoid repetitive **HTML** code the build uses [gulp-file-include](https://git
 </article>
 ```
 
-### File Structure 🏗
+## File Structure 🏗
     
     ├── app/                     # Distribution files
     ├── src/                     # Source files
@@ -127,23 +127,11 @@ $ npm run prod
 ```
 The files will be generated in the `app/` directory. The production build automatically minifies the html and css. By default also the javascript files are concatenated in one bundle: `assets/js/bundle.js`.
 
-## Image Optimization 🌅
+# Image Optimization 🌅
 For image optimization and SVG compression run:
 ```
 $ npm run images
 ```
-
-___
-
-### Technologies 🚀
-* NodeJS
-* Gulp
-* browserSync
-* Babel
-* PostCSS
-* CSSNext
-
-___
 
 # Gulpfile.js
 **Note:** The `Gulpfile.js` requires a build restart for any changes to take effect.
@@ -188,6 +176,18 @@ var footerJS = [
 ```
 
 The `headerJS` is included **before** the **DOM** is loaded and it does not use Babel for transpiling JavaScript. The `footerJS` is included **after** the **DOM** is loaded, and it goes thourgh Babel.
+
+___
+
+### Technologies 🚀
+* NodeJS
+* Gulp
+* browserSync
+* Babel
+* PostCSS
+* CSSNext
+
+___
 
 # Codestyle and Quality Assurance ⚔️
 The static web build repository comes with its own set of code style rules that can be imported into IntelliJ. The codestyle file can be found here: `tools/IntelliJ.xml`

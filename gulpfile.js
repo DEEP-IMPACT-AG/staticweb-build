@@ -162,7 +162,11 @@ gulp.task('build-prod', [
 	'header-scripts-prod',
 	'footer-scripts-prod',
 	'process-static-files-prod'
-]);
+], function () {
+	gutil.beep();
+	gutil.log(filesGenerated);
+	gutil.log(thankYou);
+});
 
 gulp.task('style-prod', function () {
 	return gulp.src('src/assets/style/main.css')
@@ -248,9 +252,15 @@ gulp.task('process-images', function () {
 /* -------------------------------------------------------------------------------------------------
 Utilitie Tasks
 -------------------------------------------------------------------------------------------------- */
+var swb = '\x1b[44m\x1b[1mStatic Web Build\x1b[0m';
+var swbUrl = '\x1b[2m - https://staticbuild.website/\x1b[0m';
+var thankYou = 'Thank you for using the' + swb + swbUrl;
+var errorMsg = '\x1b[41mError\x1b[0m';
+var filesGenerated = 'Your distribution files are generated in: \x1b[1m' + __dirname + '/app/' + '\x1b[0m - ✅';
+
 var onError = function (err) {
 	gutil.beep();
-	console.log(err.toString());
+	console.log(swb + ' - ' + errorMsg + ' ' + err.toString());
 	this.emit('end');
 };
 /* -------------------------------------------------------------------------------------------------
