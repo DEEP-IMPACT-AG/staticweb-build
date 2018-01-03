@@ -199,6 +199,9 @@ MIT
 
 # Changelog
 
+**v0.0.4**
+- Fix IE animation keyframe minification.
+
 **v0.0.3**
 - Update dependencies.
 - Code legibility.
