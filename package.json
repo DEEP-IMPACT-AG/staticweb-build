@@ -4,6 +4,7 @@
 	"description": "",
 	"main": "gulpfile.js",
 	"scripts": {
+		"start": "node server.js",
 		"prod": "gulp build-prod",
 		"dev": "gulp build-dev",
 		"images": "gulp process-images",
@@ -37,5 +38,8 @@
 		"postcss-easy-import": "^3.0.0",
 		"stylelint-config-standard": "^18.2.0",
 		"stylelint": "^9.4.0"
+	},
+	"dependencies": {
+		"express": "^4.16.3"
 	}
 }
