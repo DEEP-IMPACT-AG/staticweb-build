@@ -3,7 +3,7 @@ header {
 	height: 70px;
 	width: 100%;
 	text-align: left;
-	box-shadow: var(--shadow);
+	filter: var(--shadow);
 	background: var(--gradient);
 	position: fixed;
 	top: 0;
@@ -171,7 +171,13 @@ h1 {
 }
 
 ul {
-	@apply --nolist;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+
+	& li {
+		padding: 0;
+	}
 
 	& li {
 		margin: 5px 0;
