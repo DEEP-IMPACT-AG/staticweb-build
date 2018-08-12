@@ -33,6 +33,7 @@ var pluginsDev = [
 		stage: 3,
 		features: {
 			'nesting-rules': true,
+			'color-mod-function': true,
 		},
 	}),
 ];
@@ -42,6 +43,7 @@ var pluginsProd = [
 		stage: 3,
 		features: {
 			'nesting-rules': true,
+			'color-mod-function': true,
 		},
 	}),
 	cssnano({
