@@ -30,20 +30,22 @@ PostCSS Plugins
 var pluginsDev = [
 	postcssImport,
 	postcssPresetEnv({
-		stage: 3,
+		stage: 0,
 		features: {
 			'nesting-rules': true,
 			'color-mod-function': true,
+			'custom-media': true,
 		},
 	}),
 ];
 var pluginsProd = [
 	postcssImport,
 	postcssPresetEnv({
-		stage: 3,
+		stage: 0,
 		features: {
 			'nesting-rules': true,
 			'color-mod-function': true,
+			'custom-media': true,
 		},
 	}),
 	cssnano({

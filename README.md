@@ -1,4 +1,4 @@
-# Static Web Build [![Dependencies](https://david-dm.org/DEEP-IMPACT-AG/staticweb-build/dev-status.svg)](https://david-dm.org/DEEP-IMPACT-AG/staticweb-build?type=dev)
+# Static Web Build [![Dependencies](https://david-dm.org/DEEP-IMPACT-AG/staticweb-build/dev-status.svg)](https://david-dm.org/DEEP-IMPACT-AG/staticweb-build)
 A simple workflow for static websites with live-reload local server, Babel transpiler for JavaScript and bundling CSS with PostCSS and CSSNext.
 
 🌍 https://staticbuild.website/
@@ -6,7 +6,7 @@ A simple workflow for static websites with live-reload local server, Babel trans
 ___
 
 # Features ⚡️
-* Processing styles using PostCSS with CSSNext
+* Processing styles using [PostCSS](https://postcss.org/) with [postcss-preset-env](https://preset-env.cssdb.org/)
 * Babel Transpiler for JavaScript (ES6)
 * JavaScript Concatenating and Minification
 * CSS Minification
@@ -198,6 +198,10 @@ It is advised to run the command `$ npm run lint:css` before pushing changes, to
 MIT
 
 # Changelog
+
+**v0.0.5**
+- Added support for static server using Express.
+- Switched from postcss-cssnext to postcss-preset-env.
 
 **v0.0.4**
 - Fix IE animation keyframe minification.
