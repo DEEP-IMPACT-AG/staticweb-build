@@ -9,7 +9,7 @@
 	--light-gray: #E5E5E5;
 	--medium-gray: #B5B1B1;
 	--dark-gray: #4A4A4A;
-	--shadow: 0 2px 15px 0 color(var(--black) alpha(-75%));
+	--shadow: drop-shadow(0 0 10px rgba(0,0,0,0.35));
 	--gradient: linear-gradient(-90deg, #FF5F6D 0%, #FFC371 100%);
 
 	--font-text: 'Lato', sans-serif;
@@ -23,26 +23,3 @@
 @custom-media --screen-desktop print, (max-width: 1240px);
 @custom-media --screen-big print, (min-width: 2000px);
 @custom-media --screen-4k (min-width: 3870px);
-
-:root {
-	--clearfix: {
-		clear: both;
-
-		&:before,
-		&:after {
-			content: "";
-			display: table;
-			clear: both;
-		}
-	};
-
-	--nolist: {
-		list-style: none;
-		margin: 0;
-		padding: 0;
-
-		& li {
-			padding: 0;
-		}
-	};
-}
