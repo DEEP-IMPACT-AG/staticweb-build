@@ -114,7 +114,7 @@ gulp.task('footer-scripts-dev', function() {
 		.pipe(sourcemaps.init())
 		.pipe(
 			babel({
-				presets: ['env'],
+				presets: ['@babel/env'],
 			}),
 		)
 		.pipe(concat('bundle.js'))
@@ -222,7 +222,7 @@ gulp.task('footer-scripts-prod', function() {
 		.pipe(plumber({ errorHandler: onError }))
 		.pipe(
 			babel({
-				presets: ['env'],
+				presets: ['@babel/env'],
 			}),
 		)
 		.pipe(concat('bundle.js'))

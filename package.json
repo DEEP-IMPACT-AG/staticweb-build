@@ -13,15 +13,18 @@
 	"author": "Luan Gjokaj",
 	"license": "MIT",
 	"dependencies": {
+		"@babel/core": "^7.0.0",
+		"@babel/preset-env": "^7.0.0",
 		"aos": "^2.3.3",
 		"babel-core": "^6.26.3",
 		"babel-preset-env": "^1.7.0",
-		"browser-sync": "^2.24.6",
+		"browser-sync": "^2.24.7",
 		"connect-modrewrite": "^0.10.2",
-		"cssnano": "^4.0.5",
+		"cssnano": "^4.1.0",
 		"del": "^3.0.0",
 		"express": "^4.16.3",
-		"gulp-babel": "^7.0.1",
+		"gulp": "^3.9.1",
+		"gulp-babel": "^8.0.0",
 		"gulp-cache-bust": "^1.4.0",
 		"gulp-concat": "^2.6.1",
 		"gulp-file-include": "^2.0.1",
@@ -32,13 +35,12 @@
 		"gulp-sourcemaps": "^2.6.4",
 		"gulp-uglify": "^3.0.1",
 		"gulp-util": "^3.0.8",
-		"gulp": "^3.9.1",
 		"jquery": "^3.3.1",
 		"normalize.css": "^8.0.0",
 		"postcss-flexbugs-fixes": "^4.1.0",
 		"postcss-import": "^12.0.0",
 		"postcss-preset-env": "^5.3.0",
-		"stylelint-config-standard": "^18.2.0",
-		"stylelint": "^9.5.0"
+		"stylelint": "^9.5.0",
+		"stylelint-config-standard": "^18.2.0"
 	}
 }
