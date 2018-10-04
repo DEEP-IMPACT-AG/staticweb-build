@@ -15,7 +15,7 @@
 	"dependencies": {
 		"@babel/core": "^7.1.2",
 		"@babel/preset-env": "^7.1.0",
-		"aos": "^2.3.3",
+		"aos": "^2.3.4",
 		"babel-core": "^6.26.3",
 		"babel-preset-env": "^1.7.0",
 		"browser-sync": "^2.24.7",
