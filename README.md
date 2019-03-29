@@ -7,17 +7,17 @@ ___
 
 # Features ⚡️
 * Processing styles using [PostCSS](https://postcss.org/) with [postcss-preset-env](https://preset-env.cssdb.org/)
-* Babel Transpiler for JavaScript (ES6)
-* JavaScript Concatenating and Minification
-* CSS Minification
-* HTML Minification
-* Image Compression
-* Asset Copying
-* Templating & Partial HTML Injection
-* Cache-Busting
-* Server for viewing built site
-* Live-Reload for the dev environment
-* Creates `app/` directory with built content and assets
+* Babel transpiler for JavaScript (ES6)
+* JavaScript concatenating and minification
+* CSS minification
+* HTML minification
+* Image compression
+* Assets copying
+* Templating & partial HTML injection
+* Cache-busting
+* Local development server
+* Live-reload for the development environment
+* Distribution files: `build/`.
 
 ___
 
@@ -98,13 +98,14 @@ To avoid repetitive **HTML** code the build uses [gulp-file-include](https://git
 
 ## File Structure 🏗
     
-    ├── app/                     # Distribution files
+    ├── build/                   # Build files
+    ├── dist/                    # Distribution files
     ├── src/                     # Source files
     │   ├── assets/              # Assets directory
-    │       ├── img/             # Image directory
+    │       ├── css/             # CSS files
     │       ├── fonts/           # Fonts directory
+    │       ├── img/             # Image directory
     │       ├── js/              # JavaScript files
-    │       ├── styles/          # CSS files
     │   ├── etc/                 # Additional build files
     │   ├── includes/            # Included partials
     ├── tools/                   # Tools and utilities
@@ -127,17 +128,12 @@ $ npm run prod
 ```
 The files will be generated in the `app/` directory. The production build automatically minifies the html and css. By default also the javascript files are concatenated in one bundle: `assets/js/bundle.js`.
 
-# Image Optimization 🌅
-For image optimization and SVG compression run:
-```
-$ npm run images
-```
-
 # Gulpfile.js
 **Note:** The `Gulpfile.js` requires a build restart for any changes to take effect.
 
 ### PostCSS Plugins 🎨
-Currently, [PostCSS](http://postcss.org/) has more than 200 plugins. You can find all of the plugins in the [plugins list] or in the [searchable catalog]. [CSSNext](http://cssnext.io/) is installed in the default configuration.
+Currently, [PostCSS](http://postcss.org/) has more than 200 plugins. You can find all of the plugins in the [plugins list] or in the [searchable catalog]. [ostcss-preset-env
+](https://preset-env.cssdb.org/) is installed in the default configuration.
 
 [searchable catalog]: http://postcss.parts
 [plugins list]:       https://github.com/postcss/postcss/blob/master/docs/plugins.md
@@ -146,14 +142,35 @@ Currently, [PostCSS](http://postcss.org/) has more than 200 plugins. You can fi
 /* -------------------------------------------------------------------------------------------------
 PostCSS Plugins
 ------------------------------------------------------------------------------------------------- */
-var pluginsDev = [
-	partialimport,
-	cssnext()
+const pluginsDev = [
+	postcssImport,
+	postcssPresetEnv({
+		stage: 0,
+		features: {
+			'nesting-rules': true,
+			'color-mod-function': true,
+			'custom-media': true,
+		},
+	}),
 ];
-var pluginsProd = [
-	partialimport,
-	cssnext(),
-	cssnano()
+const pluginsProd = [
+	postcssImport,
+	postcssPresetEnv({
+		stage: 0,
+		features: {
+			'nesting-rules': true,
+			'color-mod-function': true,
+			'custom-media': true,
+		},
+	}),
+	require('cssnano')({
+		preset: [
+			'default',
+			{
+				discardComments: true,
+			},
+		],
+	}),
 ];
 //--------------------------------------------------------------------------------------------------
 ```
@@ -165,12 +182,13 @@ JavaScript files located in the project source directory `src/assets/js/` and ar
 /* -------------------------------------------------------------------------------------------------
     Your JavaScript Files
 ------------------------------------------------------------------------------------------------- */
-var headerJS = [
-    'node_modules/aos/dist/aos.js'
+const headerJS = [
+	'./src/etc/analytics.js',
+	'./node_modules/aos/dist/aos.js'
 ];
-var footerJS = [
-    'node_modules/jquery/dist/jquery.js',
-    'src/assets/js/**'
+const footerJS = [
+	'./node_modules/jquery/dist/jquery.js',
+	'./src/assets/js/**'
 ];
 //--------------------------------------------------------------------------------------------------
 ```
@@ -185,7 +203,7 @@ ___
 * browserSync
 * Babel
 * PostCSS
-* CSSNext
+* postcss-preset-env
 
 ___
 
@@ -198,6 +216,10 @@ It is advised to run the command `$ npm run lint:css` before pushing changes, to
 MIT
 
 # Changelog
+**v0.0.6**
+- Upgrade to Gulp 4.
+- Rewrote all tasks into functions.
+- Updated file structure.
 
 **v0.0.5**
 - Added support for static server using Express.
