@@ -255,6 +255,7 @@ function processImages() {
 exports.prod = series(
 	cleanProd,
 	copyFontsProd,
+	stylesProd,
 	headerScriptsProd,
 	footerScriptsProd,
 	staticFilesProd,
