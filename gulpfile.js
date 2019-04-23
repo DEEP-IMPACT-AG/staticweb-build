@@ -19,6 +19,7 @@ const modRewrite = require('connect-modrewrite');
 const plumber = require('gulp-plumber');
 const postcss = require('gulp-postcss');
 const postcssImport = require('postcss-import');
+const postCSSMixins = require('postcss-mixins');
 const postcssPresetEnv = require('postcss-preset-env');
 const sourcemaps = require('gulp-sourcemaps');
 const uglify = require('gulp-uglify');
@@ -29,6 +30,7 @@ PostCSS Plugins
 -------------------------------------------------------------------------------------------------- */
 const pluginsDev = [
 	postcssImport,
+	postCSSMixins,
 	postcssPresetEnv({
 		stage: 0,
 		features: {
@@ -40,6 +42,7 @@ const pluginsDev = [
 ];
 const pluginsProd = [
 	postcssImport,
+	postCSSMixins,
 	postcssPresetEnv({
 		stage: 0,
 		features: {
