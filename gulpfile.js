@@ -70,6 +70,7 @@ const headerJS = [
 	'./node_modules/aos/dist/aos.js'
 ];
 const footerJS = [
+	'./node_modules/webfontloader/webfontloader.js',
 	'./node_modules/jquery/dist/jquery.js',
 	'./src/assets/js/**'
 ];
