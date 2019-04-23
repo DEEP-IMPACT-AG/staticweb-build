@@ -109,7 +109,7 @@ function copyFontsDev() {
 }
 
 function stylesDev() {
-	return src('./src/assets/css/main.css')
+	return src('./src/assets/css/styles.css')
 		.pipe(plumber({ errorHandler: onError }))
 		.pipe(sourcemaps.init())
 		.pipe(postcss(pluginsDev))
@@ -184,7 +184,7 @@ function copyFontsProd() {
 }
 
 function stylesProd() {
-	return src('./src/assets/css/main.css')
+	return src('./src/assets/css/styles.css')
 		.pipe(plumber({ errorHandler: onError }))
 		.pipe(postcss(pluginsProd))
 		.pipe(dest('./dist/assets/css'));
