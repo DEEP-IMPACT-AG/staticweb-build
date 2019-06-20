@@ -216,10 +216,8 @@ It is advised to run the command `$ npm run lint:css` before pushing changes, to
 MIT
 
 # Changelog
-**v0.0.6**
-- Upgrade to Gulp 4.
-- Rewrote all tasks into functions.
-- Updated file structure.
+**v0.0.7**
+- Improve cache busting - switched to gulp-rev-all
 
 **v0.0.5**
 - Added support for static server using Express.

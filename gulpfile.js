@@ -7,7 +7,6 @@ Contributors: Luan Gjokaj
 const { gulp, series, parallel, dest, src, watch } = require('gulp');
 const babel = require('gulp-babel');
 const browserSync = require('browser-sync').create();
-const cachebust = require('gulp-cache-bust');
 const concat = require('gulp-concat');
 const cssnano = require('cssnano');
 const del = require('del');
@@ -21,6 +20,7 @@ const postcss = require('gulp-postcss');
 const postcssImport = require('postcss-import');
 const postCSSMixins = require('postcss-mixins');
 const postcssPresetEnv = require('postcss-preset-env');
+const RevAll = require("gulp-rev-all");
 const sourcemaps = require('gulp-sourcemaps');
 const uglify = require('gulp-uglify');
 
@@ -156,11 +156,6 @@ function staticFilesDev() {
 				},
 			}),
 		)
-		.pipe(
-			cachebust({
-				type: 'timestamp',
-			}),
-		)
 		.pipe(dest('./build'));
 }
 
@@ -227,11 +222,6 @@ function staticFilesProd() {
 			}),
 		)
 		.pipe(
-			cachebust({
-				type: 'timestamp',
-			}),
-		)
-		.pipe(
 			htmlmin({
 				collapseWhitespace: true,
 				ignoreCustomFragments: [/<%[\s\S]*?%>/, /<\?[=|php]?[\s\S]*?\?>/],
@@ -256,6 +246,12 @@ function processImages() {
 		});
 }
 
+function bustCaches() {
+	return src(['./dist/**'])
+	.pipe(RevAll.revision({ dontRenameFile: [/^\/favicon.ico$/g, ".html"] }))
+	.pipe(dest('./dist'))
+}
+
 exports.prod = series(
 	cleanProd,
 	copyFontsProd,
@@ -264,6 +260,7 @@ exports.prod = series(
 	footerScriptsProd,
 	staticFilesProd,
 	processImages,
+	bustCaches,
 );
 
 /* -------------------------------------------------------------------------------------------------
