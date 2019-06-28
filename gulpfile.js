@@ -230,8 +230,14 @@ function staticFilesProd() {
 		.pipe(dest('./dist'));
 }
 
+function copyImagesProd() {
+	return src('./src/assets/img/**').pipe(
+		dest('./dist/assets/img'),
+	);
+}
+
 function processImages() {
-	return src(['./src/assets/img/**', '!./src/assets/img/**/*.ico'])
+	return src(['./dist/assets/img/**', '!./dist/assets/img/**/*.ico'])
 		.pipe(plumber({ errorHandler: onError }))
 		.pipe(
 			imagemin([imagemin.svgo({ plugins: [{ removeViewBox: true }] })], {
@@ -259,6 +265,7 @@ exports.prod = series(
 	headerScriptsProd,
 	footerScriptsProd,
 	staticFilesProd,
+	copyImagesProd,
 	processImages,
 	bustCaches,
 );
