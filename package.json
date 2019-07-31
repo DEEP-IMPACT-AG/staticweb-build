@@ -12,7 +12,7 @@
 	"author": "Luan Gjokaj",
 	"license": "MIT",
 	"dependencies": {
-		"@babel/preset-env": "^7.5.4",
+		"@babel/preset-env": "^7.5.5",
 		"aos": "^2.3.4",
 		"babel-preset-env": "^1.7.0",
 		"browser-sync": "^2.26.7",
@@ -23,7 +23,7 @@
 		"gulp": "^4.0.2",
 		"gulp-babel": "^8.0.0",
 		"gulp-concat": "^2.6.1",
-		"gulp-file-include": "^2.0.1",
+		"gulp-file-include": "^2.1.0",
 		"gulp-htmlmin": "^5.0.1",
 		"gulp-imagemin": "^6.0.0",
 		"gulp-plumber": "^1.2.1",
@@ -36,7 +36,7 @@
 		"normalize.css": "^8.0.1",
 		"postcss-flexbugs-fixes": "^4.1.0",
 		"postcss-import": "^12.0.1",
-		"postcss-mixins": "^6.2.1",
+		"postcss-mixins": "^6.2.2",
 		"postcss-preset-env": "^6.7.0",
 		"stylelint": "^10.1.0",
 		"webfontloader": "^1.6.28"
